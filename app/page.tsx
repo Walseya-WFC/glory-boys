@@ -1,183 +1,332 @@
-"use client"
-
-import { useEffect, useState } from "react"
-
 export default function GloryBoysGuildSite() {
-  const [activeExpansion, setActiveExpansion] = useState("classic")
-  const [loaded, setLoaded] = useState(false)
-
-  useEffect(() => {
-    setLoaded(true)
-  }, [])
-
-  const expansions = {
-    classic: {
-      name: "Classic",
+  const expansions = [
+    {
+      expansion: "Classic",
       raids: [
         "Molten Core",
         "Blackwing Lair",
-        "Naxxramas",
-        "Zul'Gurub",
-      ],
+        "Temple of Ahn'Qiraj",
+        "Naxxramas"
+      ]
     },
-    tbc: {
-      name: "The Burning Crusade",
+    {
+      expansion: "The Burning Crusade",
       raids: [
         "Karazhan",
-        "Gruul’s Lair",
         "Serpentshrine Cavern",
         "Black Temple",
-        "Sunwell Plateau",
-      ],
+        "Sunwell Plateau"
+      ]
     },
-    wotlk: {
-      name: "Wrath of the Lich King",
+    {
+      expansion: "Wrath of the Lich King",
       raids: [
         "Naxxramas",
         "Ulduar",
         "Trial of the Crusader",
         "Icecrown Citadel",
-      ],
+        "Ruby Sanctum"
+      ]
     },
-    retail: {
-      name: "Modern Era",
+    {
+      expansion: "Cataclysm",
+      raids: [
+        "Blackwing Descent",
+        "Firelands",
+        "Dragon Soul"
+      ]
+    },
+    {
+      expansion: "Mists of Pandaria",
+      raids: [
+        "Mogu'shan Vaults",
+        "Throne of Thunder",
+        "Siege of Orgrimmar"
+      ]
+    },
+    {
+      expansion: "Warlords of Draenor",
+      raids: [
+        "Highmaul",
+        "Blackrock Foundry",
+        "Hellfire Citadel"
+      ]
+    },
+    {
+      expansion: "Legion",
+      raids: [
+        "The Emerald Nightmare",
+        "Nighthold",
+        "Tomb of Sargeras",
+        "Antorus"
+      ]
+    },
+    {
+      expansion: "Battle for Azeroth",
+      raids: [
+        "Uldir",
+        "Battle of Dazar'alor",
+        "Ny'alotha"
+      ]
+    },
+    {
+      expansion: "Shadowlands",
+      raids: [
+        "Castle Nathria",
+        "Sanctum of Domination",
+        "Sepulcher of the First Ones"
+      ]
+    },
+    {
+      expansion: "Dragonflight",
       raids: [
         "Vault of the Incarnates",
-        "Aberrus, the Shadowed Crucible",
-        "Amirdrassil",
-      ],
+        "Aberrus",
+        "Amirdrassil"
+      ]
     },
-    midnight: {
-      name: "Midnight (Season 1)",
+    {
+      expansion: "The War Within",
       raids: [
-        "The Voidspire (6 bosses)",
-        "The Dreamrift (1 boss)",
-        "March on Quel’Danas (2 bosses)",
-      ],
+        "Nerub-ar Palace"
+      ]
     },
-  }
+    {
+      expansion: "Midnight",
+      raids: [
+        "The Voidspire",
+        "The Dreamrift",
+        "March on Quel'Danas"
+      ]
+    }
+  ]
 
   return (
     <div
-      className={`min-h-screen relative overflow-y-auto text-[#cfe6ff] transition-opacity duration-1000 ${
-        loaded ? "opacity-100" : "opacity-0"
-      }`}
+      className="min-h-screen relative overflow-hidden"
       style={{
-        fontFamily: "Cinzel, serif",
         backgroundImage:
-          "url('https://bnetcmsus-a.akamaihd.net/cms/content_entry_media/FJPT5455KR5K1589912863345.jpg')",
+          "url('https://images7.alphacoders.com/340/340211.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed",
+        color: "#dbeafe",
+        fontFamily: "serif"
       }}
     >
-      {/* HERO */}
-      <section className="relative z-10 flex flex-col items-center justify-center text-center px-6 py-28">
+      {/* LIGHT DARK OVERLAY */}
+      <div className="absolute inset-0 bg-black/10" />
 
-        {/* FACTION ICONS */}
-        <div className="flex gap-10 mb-6 items-center">
-          <img
-            src="https://wow.zamimg.com/images/wow/icons/large/faction_horde.jpg"
-            className="w-14 h-14 rounded-full border border-red-600"
-          />
-          <div className="text-4xl">⚔️</div>
-          <img
-            src="https://wow.zamimg.com/images/wow/icons/large/faction_alliance.jpg"
-            className="w-14 h-14 rounded-full border border-blue-400"
-          />
-        </div>
+      {/* CONTENT */}
+      <div className="relative z-10">
 
-        {/* GUILD NAME */}
-        <h1 className="text-6xl md:text-8xl font-black uppercase tracking-[6px] blood-text">
-          Glory Boys
-        </h1>
+        {/* HERO */}
+        <section className="text-center pt-24 pb-20 px-6">
 
-        <p className="mt-6 text-blue-100/80 max-w-2xl">
-          A legacy raiding guild forged across Azeroth — discipline, execution, dominance.
-        </p>
-      </section>
-
-      {/* ABOUT */}
-      <section className="relative z-10 max-w-5xl mx-auto px-6 py-10">
-        <h2 className="text-3xl font-bold text-blue-200 mb-3">About</h2>
-        <p className="text-blue-100/70">
-          We are a progression-focused PvE guild spanning all eras of World of Warcraft.
-          From Classic raids to modern Mythic encounters, we maintain perfect execution and discipline.
-        </p>
-      </section>
-
-      {/* RAID PROGRESSION SYSTEM */}
-      <section className="relative z-10 max-w-6xl mx-auto px-6 py-14">
-
-        <h2 className="text-3xl font-bold text-blue-200 text-center mb-6">
-          Raid Progression
-        </h2>
-
-        {/* EXPANSION TABS */}
-        <div className="flex flex-wrap justify-center gap-3 mb-10">
-          {Object.entries(expansions).map(([key, exp]) => (
-            <button
-              key={key}
-              onClick={() => setActiveExpansion(key)}
-              className={`px-5 py-2 rounded-lg border transition ${
-                activeExpansion === key
-                  ? "bg-red-900/50 border-red-400 text-white"
-                  : "bg-black/40 border-blue-900/40 text-blue-200"
-              }`}
-            >
-              {exp.name}
-            </button>
-          ))}
-        </div>
-
-        {/* RAID LIST */}
-        <div className="grid md:grid-cols-3 gap-6">
-          {expansions[activeExpansion as keyof typeof expansions].raids.map(
-            (raid) => (
-              <div
-                key={raid}
-                className="bg-black/70 border border-blue-900/40 rounded-2xl p-6 hover:scale-[1.02] transition"
-              >
-                <div className="text-lg font-bold text-blue-200">{raid}</div>
-                <div className="mt-2 text-sm text-green-300">
-                  Cleared: 100%
-                </div>
-                <div className="text-xs text-blue-100/60 mt-1">
-                  All bosses defeated on all difficulties
-                </div>
-              </div>
-            )
-          )}
-        </div>
-      </section>
-
-      {/* RECRUITMENT */}
-      <section className="relative z-10 text-center px-6 py-16">
-        <h2 className="text-3xl font-bold text-blue-200 mb-6">
-          Recruitment
-        </h2>
-
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {[
-            { icon: "🛡️", role: "Tank", desc: "Raid leaders & frontline stability" },
-            { icon: "✨", role: "Healer", desc: "Precision healing & reaction mastery" },
-            { icon: "⚔️", role: "DPS", desc: "Maximum output with discipline" },
-          ].map((r) => (
-            <div
-              key={r.role}
-              className="bg-black/70 border border-blue-900/40 rounded-2xl p-6"
-            >
-              <div className="text-4xl">{r.icon}</div>
-              <div className="text-blue-200 font-bold mt-2">{r.role}</div>
-              <div className="text-blue-100/60 text-sm mt-1">{r.desc}</div>
+          {/* HORDE + ALLIANCE */}
+          <div className="flex justify-center items-center gap-8 mb-8 text-5xl">
+            <div className="drop-shadow-[0_0_20px_rgba(255,0,0,0.7)]">
+              ☠️
             </div>
-          ))}
-        </div>
-      </section>
 
-      {/* FOOTER */}
-      <div className="text-center text-xs text-blue-200/40 pb-10">
-        Glory Boys Guild — Azeroth Eternal Progression
+            {/* GUILD CREST */}
+            <div className="w-36 h-36 rounded-full border border-red-900/70 bg-black/60 flex items-center justify-center shadow-[0_0_50px_rgba(120,0,0,0.8)]">
+              <div className="text-6xl">🩸</div>
+            </div>
+
+            <div className="drop-shadow-[0_0_20px_rgba(0,100,255,0.7)]">
+              🛡️
+            </div>
+          </div>
+
+          {/* TITLE */}
+          <h1 className="blood-title text-7xl md:text-9xl font-black uppercase tracking-[0.2em]">
+            Glory Boys
+          </h1>
+
+          {/* SUBTITLE */}
+          <p className="mt-8 max-w-4xl mx-auto text-xl md:text-2xl text-blue-100/90 leading-relaxed">
+            Forged through discipline, perfected through execution, and united
+            through loyalty. Glory Boys is a high-end progression guild focused
+            on PvE excellence, Mythic raiding, achievement hunting, mount
+            farming, PvP domination, and building a respected community where
+            every member matters.
+          </p>
+        </section>
+
+        {/* ABOUT */}
+        <section className="max-w-6xl mx-auto px-6 py-10">
+          <div className="bg-black/50 border border-blue-900/40 rounded-3xl p-10 backdrop-blur-sm">
+
+            <h2 className="text-4xl font-bold text-blue-200 mb-6">
+              About The Guild
+            </h2>
+
+            <div className="space-y-5 text-lg text-blue-100/85 leading-relaxed">
+
+              <p>
+                Glory Boys is built around precision gameplay, strategic
+                coordination, and relentless improvement. We strive for
+                perfection in every raid encounter while maintaining a strong,
+                welcoming environment for both veterans and ambitious players.
+              </p>
+
+              <p>
+                Outside of progression raiding, our guild actively organizes:
+              </p>
+
+              <ul className="list-disc list-inside space-y-2 text-blue-100/80">
+                <li>Achievement Farming Runs</li>
+                <li>Rare Mount Farming</li>
+                <li>Pet & Toy Collection Events</li>
+                <li>Legacy Raid Clears</li>
+                <li>Mythic+ Push Groups</li>
+                <li>Rated Battlegrounds & Arena Teams</li>
+                <li>Community Help For New Players</li>
+              </ul>
+
+              <p>
+                We believe a guild should feel like a family — competitive when
+                needed, supportive always.
+              </p>
+
+            </div>
+          </div>
+        </section>
+
+        {/* RECRUITMENT */}
+        <section className="max-w-6xl mx-auto px-6 py-10">
+          <div className="grid md:grid-cols-3 gap-6">
+
+            {[
+              {
+                icon: "🛡️",
+                role: "Tanks",
+                desc: "Fearless frontliners with leadership mentality and encounter awareness."
+              },
+              {
+                icon: "✨",
+                role: "Healers",
+                desc: "Focused support players capable of handling intense Mythic pressure."
+              },
+              {
+                icon: "⚔️",
+                role: "DPS",
+                desc: "High-performance damage dealers dedicated to optimization and mechanics."
+              }
+            ].map((role) => (
+              <div
+                key={role.role}
+                className="bg-black/50 border border-red-900/40 rounded-3xl p-8 text-center backdrop-blur-sm"
+              >
+                <div className="text-5xl mb-4">{role.icon}</div>
+
+                <h3 className="text-3xl font-bold text-red-200 mb-3">
+                  {role.role}
+                </h3>
+
+                <p className="text-blue-100/80 text-lg leading-relaxed">
+                  {role.desc}
+                </p>
+              </div>
+            ))}
+
+          </div>
+        </section>
+
+        {/* RAID PROGRESSION */}
+        <section className="max-w-7xl mx-auto px-6 py-16">
+
+          <h2 className="text-5xl font-black text-center text-blue-200 mb-12">
+            Raid Progression
+          </h2>
+
+          <div className="space-y-10">
+
+            {expansions.map((expansion) => (
+              <div
+                key={expansion.expansion}
+                className="bg-black/50 border border-blue-900/40 rounded-3xl overflow-hidden backdrop-blur-sm"
+              >
+
+                {/* EXPANSION HEADER */}
+                <div className="bg-gradient-to-r from-red-950/80 via-black to-blue-950/80 px-8 py-5 border-b border-blue-900/40">
+                  <h3 className="text-3xl font-black tracking-wide text-blue-100">
+                    {expansion.expansion}
+                  </h3>
+                </div>
+
+                {/* RAID LIST */}
+                <div className="p-6 space-y-4">
+
+                  {expansion.raids.map((raid) => (
+                    <div
+                      key={raid}
+                      className="bg-black/40 border border-blue-900/20 rounded-2xl p-5"
+                    >
+
+                      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+
+                        <div>
+                          <div className="text-2xl font-bold text-blue-100">
+                            {raid}
+                          </div>
+
+                          <div className="text-blue-200/70 mt-1">
+                            Full Guild Clear Completed
+                          </div>
+                        </div>
+
+                        {/* DIFFICULTIES */}
+                        <div className="flex flex-wrap gap-3">
+
+                          <div className="px-4 py-2 rounded-xl bg-green-900/60 border border-green-500/40 text-green-200 font-bold">
+                            Normal 100%
+                          </div>
+
+                          <div className="px-4 py-2 rounded-xl bg-yellow-900/60 border border-yellow-500/40 text-yellow-200 font-bold">
+                            Heroic 100%
+                          </div>
+
+                          <div className="px-4 py-2 rounded-xl bg-red-900/60 border border-red-500/40 text-red-200 font-bold">
+                            Mythic 100%
+                          </div>
+
+                        </div>
+
+                      </div>
+
+                    </div>
+                  ))}
+
+                </div>
+
+              </div>
+            ))}
+
+          </div>
+        </section>
+
+        {/* FOOTER */}
+        <section className="text-center px-6 pb-24 pt-10">
+
+          <h2 className="text-5xl font-black text-red-200 mb-6">
+            Join The Brotherhood
+          </h2>
+
+          <p className="max-w-4xl mx-auto text-xl text-blue-100/85 leading-relaxed">
+            Glory Boys is more than a guild — it is a symbol of discipline,
+            loyalty, progression, and ambition. Whether pushing Mythic content,
+            farming rare collectibles, or helping fellow adventurers, we face
+            Azeroth together as one united force.
+          </p>
+
+          <div className="mt-10 inline-block px-10 py-4 rounded-2xl border border-red-800/60 bg-black/50 text-red-100 text-xl font-bold shadow-[0_0_30px_rgba(120,0,0,0.5)]">
+            Recruitment Open — Tanks, Healers & DPS Wanted
+          </div>
+
+        </section>
+
       </div>
     </div>
   )
