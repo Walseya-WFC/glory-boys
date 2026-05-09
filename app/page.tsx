@@ -126,15 +126,32 @@ export default function GloryBoysGuildSite() {
         {/* HERO */}
         <section className="text-center pt-24 pb-20 px-6">
 
-          <div className="flex justify-center items-center gap-8 mb-8">
-            <div className="text-5xl">☠️</div>
+          <div className="flex justify-center items-center gap-10 mb-8">
 
-            <div className="w-36 h-36 rounded-full border border-red-900/70 bg-black/60 flex items-center justify-center shadow-[0_0_50px_rgba(120,0,0,0.8)]">
-              <div className="text-6xl">🩸</div>
-            </div>
+  {/* ALLIANCE ICON (left) */}
+  <img
+    src="https://static.wikia.nocookie.net/wowpedia/images/3/3f/Alliance_Crest.png"
+    alt="Alliance"
+    className="w-20 h-20 object-contain drop-shadow-[0_0_10px_rgba(0,150,255,0.8)]"
+  />
 
-            <div className="text-5xl">🛡️</div>
-          </div>
+  {/* MARIJUANA GUILD SIGIL (center leaf with reggae colors) */}
+  <div className="w-36 h-36 rounded-full flex items-center justify-center bg-black/60 border border-green-500 shadow-[0_0_50px_rgba(0,255,0,0.3)]">
+    <div className="text-6xl leading-none">
+      <span className="text-red-500">▲</span>
+      <span className="text-yellow-400">🌿</span>
+      <span className="text-green-500">▼</span>
+    </div>
+  </div>
+
+  {/* HORDE ICON (right) */}
+  <img
+    src="https://static.wikia.nocookie.net/wowpedia/images/7/7b/Horde_Crest.png"
+    alt="Horde"
+    className="w-20 h-20 object-contain drop-shadow-[0_0_10px_rgba(255,0,0,0.8)]"
+  />
+
+</div>
 
           <h1 className="blood-title text-7xl md:text-9xl font-black uppercase tracking-[0.2em]">
             Glory Boys
