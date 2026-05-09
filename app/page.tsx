@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react"
 
 export default function GloryBoysGuildSite() {
   const expansions = [
-    // ... your full expansions array (unchanged) ...
+    // ... your full expansions array (same as before) ...
     {
       expansion: "Classic",
       raids: [
@@ -105,7 +105,7 @@ export default function GloryBoysGuildSite() {
   const [activeExpansion, setActiveExpansion] = useState(expansions[0])
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
-  // =============== IMPROVED REALISTIC RAIN ===============
+  // =============== FULL PAGE REALISTIC RAIN ===============
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -130,19 +130,17 @@ export default function GloryBoysGuildSite() {
     resizeCanvas()
     window.addEventListener("resize", resizeCanvas)
 
-    // Create rain drops - more natural look
     for (let i = 0; i < 220; i++) {
       drops.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height - canvas.height,
         length: Math.random() * 14 + 10,
-        speed: Math.random() * 8 + 9,        // Slower
+        speed: Math.random() * 8 + 9,
         opacity: Math.random() * 0.45 + 0.35
       })
     }
 
     const animate = () => {
-      // Stronger fade = shorter trails
       ctx.fillStyle = "rgba(3, 6, 18, 0.22)"
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
@@ -176,6 +174,7 @@ export default function GloryBoysGuildSite() {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
+      
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-fixed"
@@ -184,15 +183,15 @@ export default function GloryBoysGuildSite() {
         }}
       />
 
-      {/* Rain Layer */}
+      {/* Full Page Rain - FIXED so it stays while scrolling */}
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 z-10 pointer-events-none"
-        style={{ opacity: 0.75 }}   // Slightly reduced overall visibility
+        className="fixed inset-0 z-10 pointer-events-none"
+        style={{ opacity: 0.75 }}
       />
 
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/38 z-20" />
+      {/* Light Dark Overlay (you can adjust this) */}
+      <div className="fixed inset-0 bg-black/40 z-20 pointer-events-none" />
 
       {/* Main Content */}
       <div className="relative z-30">
