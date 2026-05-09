@@ -1,21 +1,51 @@
+"use client"
+
+import { useState } from "react"
+
 export default function GloryBoysGuildSite() {
-  const raids = [
-    {
-      name: "The Voidspire",
-      bosses: 6,
-      desc: "Complete clearance across all encounters"
-    },
-    {
-      name: "The Dreamrift",
-      bosses: 1,
-      desc: "Nightmare core fully defeated"
-    },
-    {
-      name: "March on Quel'Danas",
-      bosses: 2,
-      desc: "Sunwell defenses broken and secured"
-    }
-  ]
+  const expansions = {
+    "Midnight Season 1": [
+      {
+        name: "The Voidspire",
+        bosses: 6,
+        completed: 6,
+        icon: "🟣",
+        desc: "Voidstorm citadel purged"
+      },
+      {
+        name: "The Dreamrift",
+        bosses: 1,
+        completed: 1,
+        icon: "🌙",
+        desc: "Nightmare core eliminated"
+      },
+      {
+        name: "March on Quel'Danas",
+        bosses: 2,
+        completed: 2,
+        icon: "🔥",
+        desc: "Sunwell reclaimed"
+      }
+    ],
+    "Wrath Legacy": [
+      {
+        name: "Icecrown Citadel",
+        bosses: 12,
+        completed: 12,
+        icon: "❄️",
+        desc: "Lich King defeated"
+      },
+      {
+        name: "Ulduar",
+        bosses: 14,
+        completed: 14,
+        icon: "⚙️",
+        desc: "All titans awakened and defeated"
+      }
+    ]
+  }
+
+  const [tab, setTab] = useState("Midnight Season 1")
 
   return (
     <div
@@ -30,12 +60,12 @@ export default function GloryBoysGuildSite() {
       }}
     >
       {/* DARK OVERLAY */}
-      <div className="absolute inset-0 bg-black/80" />
+      <div className="absolute inset-0 bg-black/85" />
 
       {/* HERO */}
-      <section className="relative z-10 flex flex-col items-center justify-center text-center px-6 py-24 border-b border-blue-900/30">
+      <section className="relative z-10 flex flex-col items-center text-center px-6 py-24 border-b border-blue-900/30">
 
-        {/* GUILD ICON (BADASS) */}
+        {/* GUILD ICON */}
         <div className="mb-6">
           <div className="w-32 h-32 rounded-full border border-red-500/40 bg-black/60 flex items-center justify-center shadow-[0_0_40px_rgba(255,0,0,0.25)]">
             <div className="text-5xl">☠️</div>
@@ -50,128 +80,93 @@ export default function GloryBoysGuildSite() {
         </h1>
 
         <p className="max-w-3xl mt-6 text-lg text-blue-100/70">
-          A disciplined raiding guild forged in skill, coordination, and execution.
+          Discipline. Execution. Perfection.
         </p>
       </section>
 
-      {/* ABOUT (RESTORED + EXPANDED) */}
-      <section className="relative z-10 max-w-6xl mx-auto px-6 py-14">
-        <h2 className="text-3xl font-bold text-blue-200 mb-4">
-          About The Guild
-        </h2>
-
-        <p className="text-blue-100/70 leading-relaxed text-lg">
-          Glory Boys is a progression-driven PvE and PvP guild built on precision, discipline, and execution.
-          We value preparation, mastery, and consistency above all else. Every encounter is studied, practiced,
-          and executed with intent.
+      {/* ABOUT */}
+      <section className="relative z-10 max-w-6xl mx-auto px-6 py-12">
+        <h2 className="text-3xl font-bold text-blue-200 mb-4">About The Guild</h2>
+        <p className="text-blue-100/70 text-lg">
+          A progression-focused raiding guild operating at high efficiency.
+          Every encounter is planned, executed, and perfected.
         </p>
       </section>
 
-      {/* EXTRA PHILOSOPHY BLOCK (ADDED BEFORE RAID SECTION) */}
+      {/* RAID UI (ARMORY STYLE) */}
       <section className="relative z-10 max-w-6xl mx-auto px-6 py-10">
-        <div className="bg-black/70 border border-blue-900/40 rounded-2xl p-6">
-          <h3 className="text-xl font-bold text-blue-200 mb-3">
-            Guild Philosophy
-          </h3>
-          <p className="text-blue-100/70">
-            We do not rely on luck. We do not rely on numbers. We rely on execution.
-            Every player is accountable. Every mistake is corrected. Every raid is perfection-focused.
-          </p>
-        </div>
-      </section>
 
-      {/* RAID PROGRESSION (NEW BLIZZARD STYLE) */}
-      <section className="relative z-10 max-w-6xl mx-auto px-6 py-14">
-        <h2 className="text-3xl font-bold text-blue-200 mb-6 text-center">
-          Raid Progression — Midnight Season 1
-        </h2>
-
-        <div className="space-y-4">
-          {raids.map((raid) => (
-            <div
-              key={raid.name}
-              className="bg-black/80 border border-blue-900/40 rounded-xl p-6 flex justify-between items-center"
+        {/* TABS */}
+        <div className="flex gap-3 mb-6 flex-wrap">
+          {Object.keys(expansions).map((exp) => (
+            <button
+              key={exp}
+              onClick={() => setTab(exp)}
+              className={`px-4 py-2 rounded-lg border transition-all text-sm ${
+                tab === exp
+                  ? "bg-red-500/20 border-red-400 text-red-200"
+                  : "bg-black/60 border-blue-900/40 text-blue-200"
+              }`}
             >
-              <div>
-                <div className="text-xl font-bold text-blue-200">
-                  {raid.name}
-                </div>
-                <div className="text-sm text-blue-100/60">
-                  {raid.desc}
-                </div>
-              </div>
-
-              <div className="text-right text-blue-200 font-bold">
-                {raid.bosses}/{raid.bosses} Cleared
-              </div>
-            </div>
+              {exp}
+            </button>
           ))}
         </div>
-      </section>
 
-      {/* RAID + PVP (RESTORED) */}
-      <section className="relative z-10 px-6 py-10 max-w-6xl mx-auto grid md:grid-cols-2 gap-6">
+        {/* RAID LIST */}
+        <div className="space-y-4">
+          {expansions[tab].map((raid) => {
+            const percent = (raid.completed / raid.bosses) * 100
 
-        <div className="bg-black/80 border border-blue-900/40 rounded-2xl p-6">
-          <h3 className="text-xl font-bold text-blue-200 mb-3">Raid Schedule</h3>
-          <div className="space-y-2 text-blue-100/70">
-            <div>Monday — 20:00 - 22:00</div>
-            <div>Wednesday — 20:00 - 22:00</div>
-            <div>Friday — 20:00 - 22:00</div>
-          </div>
-        </div>
+            return (
+              <div
+                key={raid.name}
+                className="bg-black/80 border border-blue-900/40 rounded-xl p-6 hover:border-red-500/30 transition-all"
+              >
+                <div className="flex justify-between items-center">
 
-        <div className="bg-black/80 border border-blue-900/40 rounded-2xl p-6">
-          <h3 className="text-xl font-bold text-blue-200 mb-3">PvP Warfare</h3>
-          <div className="space-y-2 text-blue-100/70">
-            <div>Saturday — Arenas & Battlegrounds</div>
-            <div>Sunday — World PvP</div>
-          </div>
-        </div>
-      </section>
+                  <div className="flex items-center gap-3">
+                    <div className="text-2xl">{raid.icon}</div>
 
-      {/* ROLES (RESTORED) */}
-      <section className="relative z-10 px-6 py-14 text-center">
-        <h2 className="text-3xl font-bold text-blue-200 mb-8">
-          Call To Arms
-        </h2>
+                    <div>
+                      <div className="text-xl font-bold text-blue-200">
+                        {raid.name}
+                      </div>
+                      <div className="text-sm text-blue-100/60">
+                        {raid.desc}
+                      </div>
+                    </div>
+                  </div>
 
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                  <div className="text-right text-red-300 font-bold">
+                    {raid.completed}/{raid.bosses}
+                  </div>
+                </div>
 
-          <div className="bg-black/80 border border-blue-900/40 rounded-2xl p-6">
-            <div className="text-4xl">🛡️</div>
-            <div className="font-bold text-blue-200">Tank</div>
-            <div className="text-blue-100/60 text-sm">Unbreakable discipline</div>
-          </div>
-
-          <div className="bg-black/80 border border-blue-900/40 rounded-2xl p-6">
-            <div className="text-4xl">✨</div>
-            <div className="font-bold text-blue-200">Healer</div>
-            <div className="text-blue-100/60 text-sm">Precision support</div>
-          </div>
-
-          <div className="bg-black/80 border border-blue-900/40 rounded-2xl p-6">
-            <div className="text-4xl">⚔️</div>
-            <div className="font-bold text-blue-200">DPS</div>
-            <div className="text-blue-100/60 text-sm">Controlled destruction</div>
-          </div>
-
+                {/* PROGRESS BAR */}
+                <div className="mt-4 w-full h-2 bg-blue-950 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-red-500"
+                    style={{ width: `${percent}%` }}
+                  />
+                </div>
+              </div>
+            )
+          })}
         </div>
       </section>
 
-      {/* RECRUITMENT (RESTORED) */}
-      <section className="relative z-10 text-center px-6 pb-24">
+      {/* RECRUITMENT */}
+      <section className="relative z-10 text-center px-6 py-20">
+
         <h2 className="text-4xl font-black text-blue-200 mb-4">
-          Recruitment
+          Now Recruiting
         </h2>
 
-        <p className="max-w-2xl mx-auto text-blue-100/70">
-          We seek disciplined players committed to excellence, consistency, and progression.
+        <p className="text-blue-100/70 max-w-2xl mx-auto">
+          Tanks • Healers • DPS — only disciplined players need apply.
         </p>
 
-        <div className="mt-8 inline-block px-8 py-3 border border-blue-400 text-blue-200 rounded-xl">
-          Tanks • Healers • DPS Needed
-        </div>
       </section>
     </div>
   )
