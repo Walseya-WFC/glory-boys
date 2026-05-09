@@ -104,7 +104,26 @@ export default function GloryBoysGuildSite() {
   const [activeExpansion, setActiveExpansion] = useState(expansions[0])
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
-  // =============== FULL PAGE REALISTIC RAIN (Reduced) ===============
+  // Helper to show correct difficulties per expansion
+  const getDifficulties = (expansionName: string) => {
+    if (expansionName === "Classic") {
+      return [{ difficulty: "Normal", color: "bg-green-500", text: "text-green-300" }]
+    }
+    if (["The Burning Crusade", "Wrath of the Lich King", "Cataclysm"].includes(expansionName)) {
+      return [
+        { difficulty: "Normal", color: "bg-green-500", text: "text-green-300" },
+        { difficulty: "Heroic", color: "bg-yellow-500", text: "text-yellow-300" }
+      ]
+    }
+    // Mists of Pandaria and newer expansions
+    return [
+      { difficulty: "Normal", color: "bg-green-500", text: "text-green-300" },
+      { difficulty: "Heroic", color: "bg-yellow-500", text: "text-yellow-300" },
+      { difficulty: "Mythic", color: "bg-red-500", text: "text-red-300" }
+    ]
+  }
+
+  // =============== FULL PAGE REALISTIC RAIN ===============
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -128,7 +147,6 @@ export default function GloryBoysGuildSite() {
     resizeCanvas()
     window.addEventListener("resize", resizeCanvas)
 
-    // Reduced by 50% → 110 drops
     for (let i = 0; i < 110; i++) {
       drops.push({
         x: Math.random() * canvas.width,
@@ -281,11 +299,12 @@ export default function GloryBoysGuildSite() {
           </div>
         </section>
 
-        {/* RAID PROGRESSION */}
+        {/* RAID PROGRESSION - Updated with realistic difficulties */}
         <section className="max-w-7xl mx-auto px-6 py-16">
           <h2 className="text-5xl font-black text-center text-blue-200 mb-12">
             Raid Progression
           </h2>
+
           <div className="flex flex-wrap justify-center gap-3 mb-10">
             {expansions.map((exp) => (
               <button
@@ -305,53 +324,52 @@ export default function GloryBoysGuildSite() {
           </div>
 
           <div className="space-y-6">
-            {activeExpansion.raids.map((raid) => (
-              <div
-                key={raid.name}
-                className="bg-black/50 border border-blue-900/40 rounded-3xl overflow-hidden backdrop-blur-sm"
-              >
-                <div className="bg-gradient-to-r from-red-950/80 via-black to-blue-950/80 px-8 py-5 border-b border-blue-900/40">
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                    <div>
-                      <h3 className="text-3xl font-black text-blue-100">
-                        {raid.name}
-                      </h3>
-                      <div className="text-blue-200/70 mt-1">
-                        {raid.bosses} / {raid.bosses} Bosses Defeated
+            {activeExpansion.raids.map((raid) => {
+              const difficulties = getDifficulties(activeExpansion.expansion)
+              return (
+                <div
+                  key={raid.name}
+                  className="bg-black/50 border border-blue-900/40 rounded-3xl overflow-hidden backdrop-blur-sm"
+                >
+                  <div className="bg-gradient-to-r from-red-950/80 via-black to-blue-950/80 px-8 py-5 border-b border-blue-900/40">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                      <div>
+                        <h3 className="text-3xl font-black text-blue-100">
+                          {raid.name}
+                        </h3>
+                        <div className="text-blue-200/70 mt-1">
+                          {raid.bosses} / {raid.bosses} Bosses Defeated
+                        </div>
                       </div>
-                    </div>
-                    <div className="text-green-300 font-bold text-xl">
-                      100% Cleared
+                      <div className="text-green-300 font-bold text-xl">
+                        100% Cleared
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="p-8 space-y-6">
-                  {[
-                    { difficulty: "Normal", color: "bg-green-500", text: "text-green-300" },
-                    { difficulty: "Heroic", color: "bg-yellow-500", text: "text-yellow-300" },
-                    { difficulty: "Mythic", color: "bg-red-500", text: "text-red-300" }
-                  ].map((difficulty) => (
-                    <div key={difficulty.difficulty}>
-                      <div className="flex justify-between mb-2">
-                        <div className={`font-bold ${difficulty.text}`}>
-                          {difficulty.difficulty}
+                  <div className="p-8 space-y-6">
+                    {difficulties.map((difficulty) => (
+                      <div key={difficulty.difficulty}>
+                        <div className="flex justify-between mb-2">
+                          <div className={`font-bold ${difficulty.text}`}>
+                            {difficulty.difficulty}
+                          </div>
+                          <div className={`${difficulty.text}`}>
+                            {raid.bosses}/{raid.bosses}
+                          </div>
                         </div>
-                        <div className={`${difficulty.text}`}>
-                          {raid.bosses}/{raid.bosses}
+                        <div className="w-full h-5 rounded-full bg-black/60 border border-blue-900/40 overflow-hidden">
+                          <div
+                            className={`h-full ${difficulty.color} shadow-[0_0_15px_rgba(255,255,255,0.2)]`}
+                            style={{ width: "100%" }}
+                          />
                         </div>
                       </div>
-                      <div className="w-full h-5 rounded-full bg-black/60 border border-blue-900/40 overflow-hidden">
-                        <div
-                          className={`h-full ${difficulty.color} shadow-[0_0_15px_rgba(255,255,255,0.2)]`}
-                          style={{ width: "100%" }}
-                        />
-                      </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </section>
 
