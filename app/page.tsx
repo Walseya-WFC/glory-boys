@@ -119,8 +119,9 @@ export default function GloryBoysGuildSite() {
     >
       {/* DARK SHADE */}
       <div className="absolute inset-0 bg-black/25" />
-      <div className="rain-layer pointer-events-none fixed inset-0 z-5" />
 
+      <div className="ash-layer pointer-events-none fixed inset-0 z-10" />
+      
       <div className="relative z-10">
 
         {/* HERO */}

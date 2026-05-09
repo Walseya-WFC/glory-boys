@@ -133,36 +133,66 @@ a {
       0 0 60px rgba(120, 0, 0, 0.8);
   }
 }
-.rain-layer {
+/* =========================
+   DRIFTING ASH PARTICLES
+========================= */
+.ash-layer {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 5;
   overflow: hidden;
+  z-index: 5;
 }
 
-/* multiple thin rain streaks */
-.rain-layer::before {
+/* main ash particles */
+.ash-layer::before {
   content: "";
   position: absolute;
-  inset: -200%;
-  background-image: repeating-linear-gradient(
-  to bottom,
-  rgba(255, 255, 255, 0.6) 0px,
-  rgba(255, 255, 255, 0.6) 1px,
-  rgba(255, 255, 255, 0.2) 2px,
-  transparent 6px
+  inset: -50%;
+  background-image: radial-gradient(
+    circle,
+    rgba(220, 220, 220, 0.8) 0px,
+    rgba(220, 220, 220, 0.3) 2px,
+    transparent 5px
   );
 
-  animation: rainFall 0.35s linear infinite;
-  opacity: 0.5;
+  background-size: 140px 140px;
+  animation: ashFloat 18s linear infinite;
+  opacity: 0.35;
+  filter: blur(0.4px);
 }
 
-@keyframes rainFall {
+/* subtle secondary layer for depth */
+.ash-layer::after {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.4) 0px,
+    transparent 4px
+  );
+
+  background-size: 220px 220px;
+  animation: ashFloat2 28s linear infinite;
+  opacity: 0.2;
+}
+
+/* movement */
+@keyframes ashFloat {
   0% {
-    transform: translateY(-50%) rotate(10deg);
+    transform: translateY(-10%) translateX(-5%);
   }
   100% {
-    transform: translateY(50%) rotate(10deg);
+    transform: translateY(10%) translateX(5%);
+  }
+}
+
+@keyframes ashFloat2 {
+  0% {
+    transform: translateY(5%) translateX(3%);
+  }
+  100% {
+    transform: translateY(-5%) translateX(-3%);
   }
 }
