@@ -30,8 +30,9 @@ export default function GloryBoysGuildSite() {
         </h1>
 
         <p className="mt-6 text-lg md:text-xl text-blue-100/80 max-w-3xl mx-auto leading-relaxed">
-          A hardened World of Warcraft progression guild forged in discipline, execution, and relentless improvement.
-          We do not play to participate — we play to dominate.
+          A hardened World of Warcraft progression guild forged in discipline,
+          execution, and relentless improvement. We do not play to participate —
+          we play to dominate.
         </p>
       </section>
 
@@ -54,21 +55,21 @@ export default function GloryBoysGuildSite() {
         <div className="bg-black/70 border border-blue-900/40 rounded-xl p-6">
           <h3 className="text-xl font-bold text-blue-200 mb-2">Discipline</h3>
           <p className="text-blue-100/70">
-            No excuses, no randomness — only structured execution.
+            No excuses. Clean execution only.
           </p>
         </div>
 
         <div className="bg-black/70 border border-blue-900/40 rounded-xl p-6">
           <h3 className="text-xl font-bold text-blue-200 mb-2">Mastery</h3>
           <p className="text-blue-100/70">
-            Every player knows their role beyond basic rotation.
+            Deep class understanding and encounter control.
           </p>
         </div>
 
         <div className="bg-black/70 border border-blue-900/40 rounded-xl p-6">
           <h3 className="text-xl font-bold text-blue-200 mb-2">Consistency</h3>
           <p className="text-blue-100/70">
-            Performance is expected every raid night, not occasionally.
+            Every raid night is performance night.
           </p>
         </div>
 
@@ -82,8 +83,8 @@ export default function GloryBoysGuildSite() {
         </h2>
 
         <p className="text-blue-100/70 text-lg mb-8 leading-relaxed">
-          We are currently recruiting experienced and dedicated players for core raid progression.
-          If you lack discipline or consistency, this is not the place for you.
+          We are actively recruiting skilled and committed players for progression raiding.
+          Tanks, Healers, and DPS roles are all open.
         </p>
 
         <div className="grid md:grid-cols-3 gap-6">
@@ -91,61 +92,99 @@ export default function GloryBoysGuildSite() {
           <div className="bg-black/70 border border-blue-900/40 rounded-xl p-6">
             <h3 className="text-xl font-bold text-blue-200">Tanks</h3>
             <p className="text-blue-100/70 mt-2">
-              Leadership, awareness, and absolute control of encounter pacing.
+              Leadership and encounter control under pressure.
             </p>
           </div>
 
           <div className="bg-black/70 border border-blue-900/40 rounded-xl p-6">
             <h3 className="text-xl font-bold text-blue-200">Healers</h3>
             <p className="text-blue-100/70 mt-2">
-              Precision healing and reactive decision-making under pressure.
+              Precision healing and reaction-based gameplay.
             </p>
           </div>
 
           <div className="bg-black/70 border border-blue-900/40 rounded-xl p-6">
             <h3 className="text-xl font-bold text-blue-200">DPS</h3>
             <p className="text-blue-100/70 mt-2">
-              Maximum output with perfect mechanic execution.
+              Maximum damage with perfect mechanics execution.
             </p>
           </div>
 
         </div>
       </section>
 
-      {/* RAID PROGRESSION */}
+      {/* RAID PROGRESSION - BLIZZARD STYLE */}
       <section className="relative z-10 max-w-6xl mx-auto px-6 py-16">
 
-        <h2 className="text-3xl font-bold text-blue-200 mb-8 text-center">
+        <h2 className="text-3xl font-bold text-blue-200 mb-10 text-center">
           Raid Progression
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="space-y-5">
 
-          <div className="bg-black/70 border border-green-900/40 rounded-xl p-6">
-            <h3 className="text-xl font-bold text-green-300 mb-2">Normal</h3>
-            <p className="text-blue-100/70">
-              Full clear — all bosses defeated with clean execution.
-            </p>
-          </div>
+          {[
+            {
+              raid: "Current Raid Tier",
+              status: "All Bosses Defeated",
+              color: "green",
+            },
+            {
+              raid: "Heroic Difficulty",
+              status: "Full Clear (All Bosses)",
+              color: "blue",
+            },
+            {
+              raid: "Normal Difficulty",
+              status: "Full Clear (All Bosses)",
+              color: "green",
+            },
+            {
+              raid: "Mythic Difficulty",
+              status: "All Bosses Defeated (Final Boss Cleared)",
+              color: "purple",
+            },
+          ].map((r) => (
+            <div
+              key={r.raid}
+              className="bg-black/70 border border-blue-900/40 rounded-lg px-6 py-4 flex items-center justify-between"
+            >
 
-          <div className="bg-black/70 border border-yellow-900/40 rounded-xl p-6">
-            <h3 className="text-xl font-bold text-yellow-300 mb-2">Heroic</h3>
-            <p className="text-blue-100/70">
-              Full clear — coordinated performance under pressure.
-            </p>
-          </div>
+              {/* LEFT */}
+              <div>
+                <div className="text-blue-200 font-semibold text-lg">
+                  {r.raid}
+                </div>
+                <div className="text-blue-100/60 text-sm">
+                  Glory Boys Guild Progress
+                </div>
+              </div>
 
-          <div className="bg-black/70 border border-red-900/40 rounded-xl p-6">
-            <h3 className="text-xl font-bold text-red-300 mb-2">Mythic</h3>
-            <p className="text-blue-100/70">
-              Nearly complete — all bosses down except final encounter.
-            </p>
-          </div>
+              {/* RIGHT */}
+              <div className="text-right">
+                <div
+                  className={`font-bold text-sm ${
+                    r.color === "green"
+                      ? "text-green-300"
+                      : r.color === "blue"
+                      ? "text-blue-300"
+                      : "text-purple-300"
+                  }`}
+                >
+                  {r.status}
+                </div>
+
+                <div className="w-44 h-2 bg-gray-800 rounded mt-2 overflow-hidden">
+                  <div className="h-full w-full bg-gradient-to-r from-green-400 via-blue-400 to-purple-500" />
+                </div>
+              </div>
+
+            </div>
+          ))}
 
         </div>
       </section>
 
-      {/* FINAL MESSAGE */}
+      {/* FINAL CTA */}
       <section className="relative z-10 text-center px-6 py-24">
 
         <h2 className="text-4xl md:text-5xl font-black text-blue-200 mb-6">
@@ -153,8 +192,8 @@ export default function GloryBoysGuildSite() {
         </h2>
 
         <p className="text-blue-100/70 max-w-3xl mx-auto text-lg leading-relaxed">
-          We are building something elite. Not casual. Not average.  
-          If you want to improve, push limits, and raid at a high level — this is your place.
+          We are building an elite progression environment focused on performance,
+          discipline, and long-term mastery. If you are serious — you belong here.
         </p>
 
         <div className="mt-10 inline-block px-10 py-4 border border-blue-400 text-blue-200 rounded-xl">
