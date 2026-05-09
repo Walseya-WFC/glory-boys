@@ -1,69 +1,86 @@
 @import "tailwindcss";
 
 /* =========================
-   BASE RESET + FIX SCROLL
-   ========================= */
-html, body {
-  height: auto;
-  min-height: 100%;
+   BASE THEME VARIABLES
+========================= */
+
+:root {
+  --background: #000000;
+  --foreground: #cfe6ff;
+}
+
+/* Dark mode fallback (kept stable) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #000000;
+    --foreground: #cfe6ff;
+  }
+}
+
+/* =========================
+   GLOBAL BODY FIX (IMPORTANT)
+   - fixes scrolling issues
+   - removes weird dots/spinner backgrounds
+========================= */
+
+html,
+body {
+  height: 100%;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
-  background: #000;
-  color: #cfe6ff;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
-/* remove default link underline issues */
-a {
-  text-decoration: none;
-  color: inherit;
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+
+  /* IMPORTANT: fixes “can’t scroll” bugs */
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /* =========================
-   BLOOD TITLE STYLE
-   ========================= */
-.blood-title {
-  font-family: serif;
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 3px;
+   BLOOD TITLE EFFECT
+   (used for "Glory Boys")
+========================= */
 
-  background: linear-gradient(
-    180deg,
-    #2b0000 0%,
-    #7a0000 40%,
-    #120000 100%
-  );
-
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  position: relative;
+.blood-text {
+  color: #1a0000;
 
   text-shadow:
-    0 0 12px rgba(120, 0, 0, 0.6),
-    0 0 30px rgba(40, 0, 0, 0.9);
-}
-
-/* dripping effect */
-.blood-title::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -8px;
-  width: 100%;
-  height: 12px;
-  background: linear-gradient(to bottom, #8b0000, transparent);
-  opacity: 0.6;
-  filter: blur(1px);
+    0 0 8px rgba(160, 0, 0, 0.8),
+    0 0 18px rgba(120, 0, 0, 0.7),
+    0 0 30px rgba(80, 0, 0, 0.6),
+    0 2px 0 #000;
 }
 
 /* =========================
-   SAFETY SCROLL OVERRIDES
-   ========================= */
-#root, #__next {
-  min-height: 100%;
-  overflow: visible;
+   OPTIONAL ICE / FROST GLOW
+   (if you ever switch back theme)
+========================= */
+
+.ice-text {
+  color: #d9f2ff;
+  text-shadow:
+    0 0 10px rgba(120, 200, 255, 0.7),
+    0 0 25px rgba(80, 160, 255, 0.5);
+}
+
+/* =========================
+   SMOOTH UI POLISH
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Remove default button weirdness */
+button {
+  font-family: inherit;
 }

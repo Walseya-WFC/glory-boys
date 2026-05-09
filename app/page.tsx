@@ -3,171 +3,139 @@
 import { useState } from "react"
 
 export default function GloryBoysGuildSite() {
-  const expansions = {
-    "Midnight Season 1": [
-      {
-        name: "The Voidspire",
-        bosses: 6,
-        completed: 6,
-        icon: "🟣",
-        desc: "Voidstorm citadel purged"
-      },
-      {
-        name: "The Dreamrift",
-        bosses: 1,
-        completed: 1,
-        icon: "🌙",
-        desc: "Nightmare core eliminated"
-      },
-      {
-        name: "March on Quel'Danas",
-        bosses: 2,
-        completed: 2,
-        icon: "🔥",
-        desc: "Sunwell reclaimed"
-      }
-    ],
-    "Wrath Legacy": [
-      {
-        name: "Icecrown Citadel",
-        bosses: 12,
-        completed: 12,
-        icon: "❄️",
-        desc: "Lich King defeated"
-      },
-      {
-        name: "Ulduar",
-        bosses: 14,
-        completed: 14,
-        icon: "⚙️",
-        desc: "All titans awakened and defeated"
-      }
-    ]
-  }
+  const [activeRaidTab, setActiveRaidTab] = useState("midnight")
 
-  const [tab, setTab] = useState("Midnight Season 1")
+  const raids = {
+    midnight: [
+      { name: "The Voidspire", bosses: 6 },
+      { name: "The Dreamrift", bosses: 1 },
+      { name: "March on Quel'Danas", bosses: 2 },
+    ],
+    dragonflight: [
+      { name: "Aberrus, the Shadowed Crucible", bosses: 9 },
+      { name: "Amirdrassil, the Dream’s Hope", bosses: 9 },
+    ],
+    classic: [
+      { name: "Icecrown Citadel", bosses: 12 },
+      { name: "Trial of the Crusader", bosses: 5 },
+    ],
+  }
 
   return (
     <div
-      className="min-h-screen w-full overflow-y-auto relative text-[#cfe6ff]"
+      className="min-h-screen overflow-y-auto relative text-[#cfe6ff]"
       style={{
         fontFamily: "Cinzel, serif",
         backgroundImage:
           "url('https://bnetcmsus-a.akamaihd.net/cms/content_entry_media/FJPT5455KR5K1589912863345.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundRepeat: "no-repeat"
+        backgroundRepeat: "no-repeat",
       }}
     >
       {/* DARK OVERLAY */}
-      <div className="absolute inset-0 bg-black/85" />
+      <div className="absolute inset-0 bg-black/75" />
 
       {/* HERO */}
-      <section className="relative z-10 flex flex-col items-center text-center px-6 py-24 border-b border-blue-900/30">
+      <section className="relative z-10 flex flex-col items-center justify-center text-center px-6 py-24 border-b border-blue-900/30">
 
         {/* GUILD ICON */}
         <div className="mb-6">
-          <div className="w-32 h-32 rounded-full border border-red-500/40 bg-black/60 flex items-center justify-center shadow-[0_0_40px_rgba(255,0,0,0.25)]">
-            <div className="text-5xl">☠️</div>
+          <div className="w-28 h-28 rounded-full bg-black/60 border border-red-900/40 flex items-center justify-center shadow-[0_0_40px_rgba(120,0,0,0.4)]">
+            <div className="text-4xl">☠️</div>
           </div>
         </div>
 
-        {/* TITLE */}
-        <h1 className="text-6xl md:text-8xl font-black uppercase tracking-widest">
-          <span className="text-transparent bg-clip-text bg-gradient-to-b from-red-700 via-black to-red-900 drop-shadow-[0_0_25px_rgba(255,0,0,0.35)]">
-            Glory Boys
-          </span>
+        {/* TITLE (BLOOD STYLE) */}
+        <h1 className="text-6xl md:text-8xl font-black uppercase tracking-widest blood-text">
+          Glory Boys
         </h1>
 
         <p className="max-w-3xl mt-6 text-lg text-blue-100/70">
-          Discipline. Execution. Perfection.
+          A disciplined raiding guild forged in skill, coordination, and execution.
         </p>
       </section>
 
       {/* ABOUT */}
-      <section className="relative z-10 max-w-6xl mx-auto px-6 py-12">
+      <section className="relative z-10 max-w-6xl mx-auto px-6 py-14">
         <h2 className="text-3xl font-bold text-blue-200 mb-4">About The Guild</h2>
-        <p className="text-blue-100/70 text-lg">
-          A progression-focused raiding guild operating at high efficiency.
-          Every encounter is planned, executed, and perfected.
+        <p className="text-blue-100/70 leading-relaxed">
+          Glory Boys is a progression-driven PvE guild built on precision, discipline,
+          and mastery. We focus on high-end raiding performance, structured execution,
+          and long-term progression.
         </p>
       </section>
 
-      {/* RAID UI (ARMORY STYLE) */}
-      <section className="relative z-10 max-w-6xl mx-auto px-6 py-10">
+      {/* RAID PROGRESSION (CLICKABLE TABS) */}
+      <section className="relative z-10 max-w-6xl mx-auto px-6 py-14">
+        <h2 className="text-3xl font-bold text-blue-200 mb-6 text-center">
+          Raid Progression
+        </h2>
 
         {/* TABS */}
-        <div className="flex gap-3 mb-6 flex-wrap">
-          {Object.keys(expansions).map((exp) => (
+        <div className="flex justify-center gap-3 mb-8 flex-wrap">
+          {Object.keys(raids).map((key) => (
             <button
-              key={exp}
-              onClick={() => setTab(exp)}
-              className={`px-4 py-2 rounded-lg border transition-all text-sm ${
-                tab === exp
-                  ? "bg-red-500/20 border-red-400 text-red-200"
+              key={key}
+              onClick={() => setActiveRaidTab(key)}
+              className={`px-5 py-2 rounded-lg border transition ${
+                activeRaidTab === key
+                  ? "bg-red-900/40 border-red-400 text-white"
                   : "bg-black/60 border-blue-900/40 text-blue-200"
               }`}
             >
-              {exp}
+              {key.toUpperCase()}
             </button>
           ))}
         </div>
 
         {/* RAID LIST */}
-        <div className="space-y-4">
-          {expansions[tab].map((raid) => {
-            const percent = (raid.completed / raid.bosses) * 100
-
-            return (
-              <div
-                key={raid.name}
-                className="bg-black/80 border border-blue-900/40 rounded-xl p-6 hover:border-red-500/30 transition-all"
-              >
-                <div className="flex justify-between items-center">
-
-                  <div className="flex items-center gap-3">
-                    <div className="text-2xl">{raid.icon}</div>
-
-                    <div>
-                      <div className="text-xl font-bold text-blue-200">
-                        {raid.name}
-                      </div>
-                      <div className="text-sm text-blue-100/60">
-                        {raid.desc}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="text-right text-red-300 font-bold">
-                    {raid.completed}/{raid.bosses}
-                  </div>
-                </div>
-
-                {/* PROGRESS BAR */}
-                <div className="mt-4 w-full h-2 bg-blue-950 rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-red-500"
-                    style={{ width: `${percent}%` }}
-                  />
-                </div>
+        <div className="grid md:grid-cols-3 gap-6">
+          {raids[activeRaidTab as keyof typeof raids].map((raid) => (
+            <div
+              key={raid.name}
+              className="bg-black/80 border border-blue-900/40 rounded-2xl p-6"
+            >
+              <div className="text-lg font-bold text-blue-200 mb-2">
+                {raid.name}
               </div>
-            )
-          })}
+              <div className="text-blue-100/70 text-sm">
+                Cleared: 100% ({raid.bosses}/{raid.bosses} bosses)
+              </div>
+              <div className="mt-3 text-red-300 text-sm">
+                Mythic: Completed
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* RECRUITMENT */}
-      <section className="relative z-10 text-center px-6 py-20">
+      {/* ROLES */}
+      <section className="relative z-10 px-6 py-14 text-center">
+        <h2 className="text-3xl font-bold text-blue-200 mb-8">Recruitment</h2>
 
-        <h2 className="text-4xl font-black text-blue-200 mb-4">
-          Now Recruiting
-        </h2>
-
-        <p className="text-blue-100/70 max-w-2xl mx-auto">
-          Tanks • Healers • DPS — only disciplined players need apply.
-        </p>
-
+        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {[
+            { icon: "🛡️", title: "Tanks", desc: "Required frontline leaders" },
+            { icon: "✨", title: "Healers", desc: "Precision support players" },
+            { icon: "⚔️", title: "DPS", desc: "High execution damage dealers" },
+          ].map((r) => (
+            <div
+              key={r.title}
+              className="bg-black/80 border border-blue-900/40 rounded-2xl p-6"
+            >
+              <div className="text-4xl mb-2">{r.icon}</div>
+              <div className="font-bold text-blue-200">{r.title}</div>
+              <div className="text-blue-100/70 text-sm mt-1">{r.desc}</div>
+            </div>
+          ))}
+        </div>
       </section>
+
+      {/* FOOTER TEXT */}
+      <div className="relative z-10 text-center text-xs text-blue-200/40 pb-10">
+        Glory Boys Guild — Icecrown Legacy Division
+      </div>
     </div>
   )
 }
