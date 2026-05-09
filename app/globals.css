@@ -1,26 +1,7 @@
 @import "tailwindcss";
 
 /* =========================
-   BASE THEME VARIABLES
-========================= */
-
-:root {
-  --background: #000000;
-  --foreground: #cfe6ff;
-}
-
-/* Dark mode fallback (kept stable) */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #000000;
-    --foreground: #cfe6ff;
-  }
-}
-
-/* =========================
-   GLOBAL BODY FIX (IMPORTANT)
-   - fixes scrolling issues
-   - removes weird dots/spinner backgrounds
+   BASE SETUP
 ========================= */
 
 html,
@@ -31,56 +12,83 @@ body {
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: #000;
+  color: #cfe6ff;
   font-family: Arial, Helvetica, sans-serif;
 
-  /* IMPORTANT: fixes “can’t scroll” bugs */
+  /* IMPORTANT: fixes scroll issues */
   overflow-y: auto;
   overflow-x: hidden;
+
+  /* removes weird background artifacts some templates add */
+  background-image: none;
 }
 
 /* =========================
-   BLOOD TITLE EFFECT
-   (used for "Glory Boys")
-========================= */
-
-.blood-text {
-  color: #1a0000;
-
-  text-shadow:
-    0 0 8px rgba(160, 0, 0, 0.8),
-    0 0 18px rgba(120, 0, 0, 0.7),
-    0 0 30px rgba(80, 0, 0, 0.6),
-    0 2px 0 #000;
-}
-
-/* =========================
-   OPTIONAL ICE / FROST GLOW
-   (if you ever switch back theme)
-========================= */
-
-.ice-text {
-  color: #d9f2ff;
-  text-shadow:
-    0 0 10px rgba(120, 200, 255, 0.7),
-    0 0 25px rgba(80, 160, 255, 0.5);
-}
-
-/* =========================
-   SMOOTH UI POLISH
+   BOX MODEL FIX
 ========================= */
 
 * {
   box-sizing: border-box;
 }
 
+/* =========================
+   BLOOD TITLE EFFECT
+   (Glory Boys styling)
+========================= */
+
+.blood-text {
+  color: #1a0000;
+
+  text-shadow:
+    0 0 10px rgba(180, 0, 0, 0.8),
+    0 0 25px rgba(120, 0, 0, 0.7),
+    0 3px 0 #000;
+
+  letter-spacing: 6px;
+}
+
+/* =========================
+   OPTIONAL ICE STYLE (unused but ready)
+========================= */
+
+.ice-text {
+  color: #d6f3ff;
+  text-shadow:
+    0 0 10px rgba(120, 200, 255, 0.7),
+    0 0 25px rgba(80, 160, 255, 0.5);
+}
+
+/* =========================
+   BUTTON RESET
+========================= */
+
+button {
+  font-family: inherit;
+}
+
+/* =========================
+   LINKS
+========================= */
+
 a {
   color: inherit;
   text-decoration: none;
 }
 
-/* Remove default button weirdness */
-button {
-  font-family: inherit;
+/* =========================
+   SMOOTH LOADING FEEL
+========================= */
+
+body {
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
