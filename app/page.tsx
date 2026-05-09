@@ -2,7 +2,7 @@ export default function GloryBoysGuildSite() {
   return (
     <div className="min-h-screen overflow-hidden relative text-[#cfe6ff] font-serif">
 
-      {/* FIXED ICECROWN BACKGROUND */}
+      {/* ❄️ BACKGROUND IMAGE */}
       <div
         className="fixed inset-0"
         style={{
@@ -14,22 +14,24 @@ export default function GloryBoysGuildSite() {
         }}
       />
 
-      {/* DARK OVERLAY */}
+      {/* 🌑 DARK OVERLAY */}
       <div className="fixed inset-0 bg-black/75" />
 
-      {/* CONTENT WRAPPER */}
+      {/* CONTENT */}
       <div className="relative z-10">
 
         {/* HERO */}
         <section className="flex flex-col items-center justify-center text-center px-6 py-24 border-b border-blue-900/30">
 
+          {/* CREST */}
           <div className="mb-6">
             <div className="w-28 h-28 rounded-full border border-blue-300/40 bg-black/60 flex items-center justify-center shadow-[0_0_30px_rgba(120,180,255,0.3)]">
               <div className="text-4xl">❄️</div>
             </div>
           </div>
 
-          <h1 className="text-6xl md:text-8xl font-black uppercase text-transparent bg-clip-text bg-gradient-to-b from-white via-blue-200 to-blue-400">
+          {/* ❄️ FROZEN TITLE */}
+          <h1 className="text-6xl md:text-8xl font-black uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-b from-white via-cyan-200 to-slate-600 drop-shadow-[0_0_35px_rgba(120,220,255,0.6)]">
             Glory Boys
           </h1>
 
