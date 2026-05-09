@@ -141,23 +141,29 @@ a {
   overflow: hidden;
 }
 
-/* raindrops */
+/* multiple thin rain streaks */
 .rain-layer::before {
   content: "";
   position: absolute;
-  width: 200%;
-  height: 200%;
-  background-image: url("https://i.imgur.com/5R3fYQy.png"); /* rain texture */
-  background-size: cover;
-  opacity: 0.25;
-  animation: rainMove 0.5s linear infinite;
+  inset: -200%;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.35) 0px,
+    rgba(255, 255, 255, 0.35) 1px,
+    transparent 3px,
+    transparent 8px
+  );
+
+  transform: rotate(10deg);
+  animation: rainFall 0.35s linear infinite;
+  opacity: 0.5;
 }
 
-@keyframes rainMove {
-  from {
-    transform: translateY(-20%);
+@keyframes rainFall {
+  0% {
+    transform: translateY(-50%) rotate(10deg);
   }
-  to {
-    transform: translateY(0%);
+  100% {
+    transform: translateY(50%) rotate(10deg);
   }
 }
