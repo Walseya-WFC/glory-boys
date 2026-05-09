@@ -104,18 +104,18 @@ export default function GloryBoysGuildSite() {
   const [activeExpansion, setActiveExpansion] = useState(expansions[0])
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
-  // Realistic difficulties per expansion
+  // Updated realistic difficulties
   const getDifficulties = (expansionName: string) => {
-    if (expansionName === "Classic") {
+    if (expansionName === "Classic" || expansionName === "The Burning Crusade") {
       return [{ difficulty: "Normal", color: "bg-green-500", text: "text-green-300" }]
     }
-    if (expansionName === "The Burning Crusade") {
+    if (["Wrath of the Lich King", "Cataclysm", "Mists of Pandaria"].includes(expansionName)) {
       return [
         { difficulty: "Normal", color: "bg-green-500", text: "text-green-300" },
         { difficulty: "Heroic", color: "bg-yellow-500", text: "text-yellow-300" }
       ]
     }
-    // Wrath and all newer expansions
+    // Warlords of Draenor and newer
     return [
       { difficulty: "Normal", color: "bg-green-500", text: "text-green-300" },
       { difficulty: "Heroic", color: "bg-yellow-500", text: "text-yellow-300" },
@@ -190,6 +190,7 @@ export default function GloryBoysGuildSite() {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
+      
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-fixed"
