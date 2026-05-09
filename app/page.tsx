@@ -118,9 +118,9 @@ export default function GloryBoysGuildSite() {
       }}
     >
       {/* DARK SHADE */}
-      <div className="absolute inset-0 bg-black/10" />
+      <div className="absolute inset-0 bg-black/25" />
+      <div className="rain-layer pointer-events-none fixed inset-0 z-10" />
 
-      {/* CONTENT */}
       <div className="relative z-10">
 
         {/* HERO */}
@@ -128,7 +128,7 @@ export default function GloryBoysGuildSite() {
 
           {/* HERO ICONS REMOVED */}
 
-          <h1 className="blood-title text-7xl md:text-9xl font-black uppercase tracking-[0.2em]">
+          <h1 className="text-7xl md:text-9xl font-black uppercase tracking-[0.25em] text-red-100 text-center relative glow-title">
             Glory Boys
           </h1>
 

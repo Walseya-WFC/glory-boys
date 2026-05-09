@@ -47,7 +47,6 @@ body::before {
 /* =========================
    APP ROOT SAFETY LAYER
 ========================= */
-/* ensures Next.js app always renders above overlay */
 body > div {
   position: relative;
   z-index: 1;
@@ -66,7 +65,7 @@ a {
 }
 
 /* =========================
-   WOW SCROLLBAR
+   SCROLLBAR
 ========================= */
 ::-webkit-scrollbar {
   width: 10px;
@@ -98,7 +97,6 @@ a {
   position: relative;
 }
 
-/* REMOVE RED UNDERLINE (safety override) */
 .blood-title::after {
   display: none !important;
 }
@@ -108,4 +106,30 @@ a {
 ========================= */
 .wow-glow {
   text-shadow: 0 0 12px rgba(120, 180, 255, 0.4);
+}
+
+/* =========================
+   GLORY BOYS TITLE GLOW
+========================= */
+.glow-title {
+  text-shadow:
+    0 0 10px rgba(255, 0, 0, 0.6),
+    0 0 20px rgba(255, 0, 0, 0.4),
+    0 0 40px rgba(120, 0, 0, 0.6);
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    text-shadow:
+      0 0 10px rgba(255, 0, 0, 0.5),
+      0 0 25px rgba(255, 0, 0, 0.3),
+      0 0 45px rgba(120, 0, 0, 0.5);
+  }
+  50% {
+    text-shadow:
+      0 0 18px rgba(255, 50, 50, 0.8),
+      0 0 35px rgba(255, 0, 0, 0.6),
+      0 0 60px rgba(120, 0, 0, 0.8);
+  }
 }
