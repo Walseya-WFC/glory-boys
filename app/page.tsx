@@ -109,7 +109,7 @@ export default function GloryBoysGuildSite() {
       className="min-h-screen relative overflow-hidden"
       style={{
         backgroundImage:
-          "url('https://images7.alphacoders.com/340/340211.jpg')",
+          "url('https://images5.alphacoders.com/881/thumb-1920-881374.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundAttachment: "fixed",
