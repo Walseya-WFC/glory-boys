@@ -22,47 +22,53 @@ export default function GloryBoysGuildSite() {
         </h1>
 
         <p className="max-w-3xl mt-6 text-lg text-blue-100/80">
-          A disciplined raiding guild forged in execution, precision, and relentless improvement.
+          A progression-driven raiding guild built on discipline, consistency, and high-performance execution.
         </p>
       </section>
 
-      {/* ABOUT */}
+      {/* GUILD IDENTITY */}
       <section className="relative z-10 max-w-6xl mx-auto px-6 py-14">
-        <h2 className="text-3xl font-bold text-blue-200 mb-4">Who We Are</h2>
+        <h2 className="text-3xl font-bold text-blue-200 mb-4">
+          Guild Identity
+        </h2>
+
         <p className="text-blue-100/70 leading-relaxed">
-          Glory Boys is not a casual gathering. We are a structured raiding force built around consistency, preparation,
-          and performance. Every pull matters. Every mistake is learned from. Every victory is earned.
+          Glory Boys exists for one purpose: to clear content at a high level with structure and discipline.
+          We are not a casual community — we are a focused raiding team that values performance, preparation,
+          and accountability.
         </p>
 
         <p className="text-blue-100/70 leading-relaxed mt-4">
-          We value players who understand mechanics, respect raid time, and push their limits without excuses.
-          Progress is not optional — it is the standard.
+          Every member is expected to understand their class, know encounters before pulls, and improve continuously.
+          If you want carried gameplay, this is not your place. If you want progression through skill — welcome.
         </p>
       </section>
 
-      {/* PRINCIPLES */}
+      {/* WHAT MAKES US DIFFERENT */}
       <section className="relative z-10 max-w-6xl mx-auto px-6 py-10">
-        <h2 className="text-3xl font-bold text-blue-200 mb-6">Core Principles</h2>
+        <h2 className="text-3xl font-bold text-blue-200 mb-6">
+          What Sets Us Apart
+        </h2>
 
         <div className="grid md:grid-cols-3 gap-6">
           <div className="bg-black/80 border border-blue-900/40 rounded-2xl p-6">
-            <h3 className="text-blue-200 font-bold mb-2">Discipline</h3>
+            <h3 className="text-blue-200 font-bold mb-2">Structured Leadership</h3>
             <p className="text-blue-100/70 text-sm">
-              We arrive prepared, on time, and ready to execute at maximum focus.
+              Clear raid leadership, fast decisions, and zero confusion during progression.
             </p>
           </div>
 
           <div className="bg-black/80 border border-blue-900/40 rounded-2xl p-6">
-            <h3 className="text-blue-200 font-bold mb-2">Consistency</h3>
+            <h3 className="text-blue-200 font-bold mb-2">Serious Progression Mindset</h3>
             <p className="text-blue-100/70 text-sm">
-              Performance is measured over time, not in single moments.
+              We do not waste raid time. Every pull has purpose and improvement focus.
             </p>
           </div>
 
           <div className="bg-black/80 border border-blue-900/40 rounded-2xl p-6">
-            <h3 className="text-blue-200 font-bold mb-2">Execution</h3>
+            <h3 className="text-blue-200 font-bold mb-2">Performance Standards</h3>
             <p className="text-blue-100/70 text-sm">
-              Mechanics win fights. Communication wins raids.
+              Players are measured by consistency, mechanics, and adaptability.
             </p>
           </div>
         </div>
@@ -80,34 +86,34 @@ export default function GloryBoysGuildSite() {
         </div>
 
         <div className="bg-black/80 border border-blue-900/40 rounded-2xl p-6">
-          <h3 className="text-xl font-bold text-blue-200 mb-3">PvP Operations</h3>
+          <h3 className="text-xl font-bold text-blue-200 mb-3">PvP Division</h3>
           <div className="space-y-2 text-blue-100/70">
-            <div>Saturday — Arenas & Battlegrounds</div>
-            <div>Sunday — World PvP Domination</div>
+            <div>Saturday — Competitive Arenas & Rated Battlegrounds</div>
+            <div>Sunday — World PvP Coordination & Events</div>
           </div>
         </div>
       </section>
 
-      {/* RAID PROGRESS */}
+      {/* PROGRESSION */}
       <section className="relative z-10 px-6 py-14 max-w-6xl mx-auto">
         <h2 className="text-3xl font-bold text-blue-200 mb-6 text-center">
-          Raid Progression
+          Progression Status
         </h2>
 
         <div className="grid md:grid-cols-3 gap-6">
           <div className="bg-black/80 border border-blue-900/40 rounded-2xl p-6">
             <div className="text-blue-200 font-bold mb-2">Normal</div>
-            <div className="text-blue-100/70 text-sm">Full clear — mastered</div>
+            <div className="text-blue-100/70 text-sm">Cleared with consistency and efficiency</div>
           </div>
 
           <div className="bg-black/80 border border-blue-900/40 rounded-2xl p-6">
             <div className="text-blue-200 font-bold mb-2">Heroic</div>
-            <div className="text-blue-100/70 text-sm">Full clear — optimized execution</div>
+            <div className="text-blue-100/70 text-sm">Optimized execution across all encounters</div>
           </div>
 
           <div className="bg-black/80 border border-blue-900/40 rounded-2xl p-6">
             <div className="text-blue-200 font-bold mb-2">Mythic</div>
-            <div className="text-blue-100/70 text-sm">Final encounter remains</div>
+            <div className="text-blue-100/70 text-sm">Endboss progression in active development</div>
           </div>
         </div>
       </section>
@@ -118,13 +124,19 @@ export default function GloryBoysGuildSite() {
           Recruitment
         </h2>
 
-        <p className="max-w-2xl mx-auto text-blue-100/70">
-          We are currently looking for skilled players who want structured progression, not chaos.
-          Tanks, healers, and DPS all welcome — performance matters more than role.
+        <p className="max-w-3xl mx-auto text-blue-100/70 leading-relaxed">
+          We are currently expanding our roster with players who take raiding seriously.
+          We are looking for individuals who value improvement, respect team structure,
+          and understand the importance of preparation.
         </p>
 
-        <div className="mt-6 inline-block px-8 py-3 border border-blue-400 text-blue-200 rounded-xl">
-          Application via Discord (coming soon)
+        <p className="max-w-3xl mx-auto text-blue-100/70 mt-4">
+          If you are searching for a guild where performance matters and progression is earned,
+          not given — Glory Boys is built for you.
+        </p>
+
+        <div className="mt-8 inline-block px-8 py-3 border border-blue-400 text-blue-200 rounded-xl">
+          Recruitment via Discord (invite coming soon)
         </div>
       </section>
     </div>
