@@ -104,18 +104,18 @@ export default function GloryBoysGuildSite() {
   const [activeExpansion, setActiveExpansion] = useState(expansions[0])
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
-  // Helper to show correct difficulties per expansion
+  // Realistic difficulties per expansion
   const getDifficulties = (expansionName: string) => {
     if (expansionName === "Classic") {
       return [{ difficulty: "Normal", color: "bg-green-500", text: "text-green-300" }]
     }
-    if (["The Burning Crusade", "Wrath of the Lich King", "Cataclysm"].includes(expansionName)) {
+    if (expansionName === "The Burning Crusade") {
       return [
         { difficulty: "Normal", color: "bg-green-500", text: "text-green-300" },
         { difficulty: "Heroic", color: "bg-yellow-500", text: "text-yellow-300" }
       ]
     }
-    // Mists of Pandaria and newer expansions
+    // Wrath and all newer expansions
     return [
       { difficulty: "Normal", color: "bg-green-500", text: "text-green-300" },
       { difficulty: "Heroic", color: "bg-yellow-500", text: "text-yellow-300" },
@@ -190,7 +190,6 @@ export default function GloryBoysGuildSite() {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-fixed"
@@ -299,7 +298,7 @@ export default function GloryBoysGuildSite() {
           </div>
         </section>
 
-        {/* RAID PROGRESSION - Updated with realistic difficulties */}
+        {/* RAID PROGRESSION */}
         <section className="max-w-7xl mx-auto px-6 py-16">
           <h2 className="text-5xl font-black text-center text-blue-200 mb-12">
             Raid Progression
