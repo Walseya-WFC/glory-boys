@@ -104,7 +104,7 @@ export default function GloryBoysGuildSite() {
   const [activeExpansion, setActiveExpansion] = useState(expansions[0])
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
-  // Rainyday.js Setup
+  // ==================== RAINYDAY.JS SETUP ====================
   useEffect(() => {
     const script = document.createElement("script")
     script.src = "/rainyday.js"
@@ -117,9 +117,8 @@ export default function GloryBoysGuildSite() {
 
       img.onload = () => {
         const canvas = canvasRef.current
-        if (!canvas) return
+        if (!canvas || !(window as any).RainyDay) return
 
-        // @ts-ignore - RainyDay is loaded globally
         const engine = new (window as any).RainyDay({
           image: img,
           canvas: canvas,
@@ -147,7 +146,8 @@ export default function GloryBoysGuildSite() {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      {/* Background Image Layer */}
+      
+      {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-fixed"
         style={{
@@ -162,10 +162,10 @@ export default function GloryBoysGuildSite() {
         style={{ opacity: 0.85 }}
       />
 
-      {/* Dark Overlay */}
+      {/* Dark Shade */}
       <div className="absolute inset-0 bg-black/30 z-20" />
 
-      {/* Main Content */}
+      {/* Main Content - Everything you had before */}
       <div className="relative z-30">
         {/* HERO */}
         <section className="text-center pt-24 pb-20 px-6">
@@ -211,28 +211,43 @@ export default function GloryBoysGuildSite() {
         <section className="max-w-6xl mx-auto px-6 py-8">
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { icon: "🛡️", role: "Tanks", desc: "Reliable leaders capable of controlling chaos under pressure." },
-              { icon: "✨", role: "Healers", desc: "Focused support players with awareness and consistency." },
-              { icon: "⚔️", role: "DPS", desc: "High-performance players dedicated to optimization." }
+              {
+                icon: "🛡️",
+                role: "Tanks",
+                desc: "Reliable leaders capable of controlling chaos under pressure."
+              },
+              {
+                icon: "✨",
+                role: "Healers",
+                desc: "Focused support players with awareness and consistency."
+              },
+              {
+                icon: "⚔️",
+                role: "DPS",
+                desc: "High-performance players dedicated to optimization."
+              }
             ].map((role) => (
               <div
                 key={role.role}
                 className="bg-black/50 border border-red-900/40 rounded-3xl p-8 text-center backdrop-blur-sm"
               >
                 <div className="text-5xl mb-4">{role.icon}</div>
-                <h3 className="text-3xl font-bold text-red-200 mb-3">{role.role}</h3>
-                <p className="text-blue-100/80 text-lg leading-relaxed">{role.desc}</p>
+                <h3 className="text-3xl font-bold text-red-200 mb-3">
+                  {role.role}
+                </h3>
+                <p className="text-blue-100/80 text-lg leading-relaxed">
+                  {role.desc}
+                </p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* RAID PROGRESSION */}
+        {/* ARMORY STYLE RAID PROGRESSION */}
         <section className="max-w-7xl mx-auto px-6 py-16">
           <h2 className="text-5xl font-black text-center text-blue-200 mb-12">
             Raid Progression
           </h2>
-
           <div className="flex flex-wrap justify-center gap-3 mb-10">
             {expansions.map((exp) => (
               <button
@@ -260,25 +275,45 @@ export default function GloryBoysGuildSite() {
                 <div className="bg-gradient-to-r from-red-950/80 via-black to-blue-950/80 px-8 py-5 border-b border-blue-900/40">
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <div>
-                      <h3 className="text-3xl font-black text-blue-100">{raid.name}</h3>
+                      <h3 className="text-3xl font-black text-blue-100">
+                        {raid.name}
+                      </h3>
                       <div className="text-blue-200/70 mt-1">
                         {raid.bosses} / {raid.bosses} Bosses Defeated
                       </div>
                     </div>
-                    <div className="text-green-300 font-bold text-xl">100% Cleared</div>
+                    <div className="text-green-300 font-bold text-xl">
+                      100% Cleared
+                    </div>
                   </div>
                 </div>
 
                 <div className="p-8 space-y-6">
                   {[
-                    { difficulty: "Normal", color: "bg-green-500", text: "text-green-300" },
-                    { difficulty: "Heroic", color: "bg-yellow-500", text: "text-yellow-300" },
-                    { difficulty: "Mythic", color: "bg-red-500", text: "text-red-300" }
+                    {
+                      difficulty: "Normal",
+                      color: "bg-green-500",
+                      text: "text-green-300"
+                    },
+                    {
+                      difficulty: "Heroic",
+                      color: "bg-yellow-500",
+                      text: "text-yellow-300"
+                    },
+                    {
+                      difficulty: "Mythic",
+                      color: "bg-red-500",
+                      text: "text-red-300"
+                    }
                   ].map((difficulty) => (
                     <div key={difficulty.difficulty}>
                       <div className="flex justify-between mb-2">
-                        <div className={`font-bold ${difficulty.text}`}>{difficulty.difficulty}</div>
-                        <div className={`${difficulty.text}`}>{raid.bosses}/{raid.bosses}</div>
+                        <div className={`font-bold ${difficulty.text}`}>
+                          {difficulty.difficulty}
+                        </div>
+                        <div className={`${difficulty.text}`}>
+                          {raid.bosses}/{raid.bosses}
+                        </div>
                       </div>
                       <div className="w-full h-5 rounded-full bg-black/60 border border-blue-900/40 overflow-hidden">
                         <div
@@ -296,7 +331,9 @@ export default function GloryBoysGuildSite() {
 
         {/* FOOTER */}
         <section className="text-center px-6 pb-24 pt-10">
-          <h2 className="text-5xl font-black text-red-200 mb-6">Recruitment Open</h2>
+          <h2 className="text-5xl font-black text-red-200 mb-6">
+            Recruitment Open
+          </h2>
           <p className="max-w-4xl mx-auto text-xl text-blue-100/85 leading-relaxed">
             We seek dedicated players who value teamwork, progression,
             consistency, and community. Join us as we conquer every challenge

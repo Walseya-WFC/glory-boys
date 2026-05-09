@@ -9,7 +9,7 @@
 }
 
 /* =========================
-   HTML + BODY FIX
+   HTML + BODY
 ========================= */
 html {
   width: 100%;
@@ -32,16 +32,9 @@ body {
   position: relative;
 }
 
-/* =========================
-   GLOBAL 10% DARK FILTER
-========================= */
+/* Disabled old overlay - we use our own in page.tsx now */
 body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.10);
-  pointer-events: none;
-  z-index: 0;
+  display: none;
 }
 
 /* =========================
@@ -70,46 +63,19 @@ a {
 ::-webkit-scrollbar {
   width: 10px;
 }
-
 ::-webkit-scrollbar-track {
   background: #05070a;
 }
-
 ::-webkit-scrollbar-thumb {
   background: #1b2a44;
   border-radius: 10px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
   background: #2c4f7a;
 }
 
 /* =========================
-   BLOOD TITLE
-========================= */
-.blood-title {
-  color: #2b0000;
-  text-shadow:
-    0 0 2px #000,
-    0 0 10px #8b0000,
-    0 0 20px #4b0000,
-    0 0 35px #220000;
-  position: relative;
-}
-
-.blood-title::after {
-  display: none !important;
-}
-
-/* =========================
-   WOW GLOW
-========================= */
-.wow-glow {
-  text-shadow: 0 0 12px rgba(120, 180, 255, 0.4);
-}
-
-/* =========================
-   GLORY BOYS TITLE GLOW
+   GLOW EFFECTS
 ========================= */
 .glow-title {
   text-shadow:
