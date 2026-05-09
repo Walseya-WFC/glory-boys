@@ -1,207 +1,161 @@
 export default function GloryBoysGuildSite() {
+  const raids = [
+    {
+      name: "The Voidspire",
+      bosses: [
+        "Eldritch Sentinel",
+        "Voidborne Council",
+        "Reality Fracture",
+        "Xal'Ator the Unbound",
+        "Echo of Nothing",
+        "The Spire Core"
+      ]
+    },
+    {
+      name: "The Dreamrift",
+      bosses: ["Lunara, the Dream Devourer"]
+    },
+    {
+      name: "March on Quel'Danas",
+      bosses: ["Sunwell Warden Kaelith", "Abyssal Magister Veyron"]
+    }
+  ];
+
+  const guildRanks = [
+    { name: "Guild Master", count: 1 },
+    { name: "Officer", count: 3 },
+    { name: "Raiders", count: 18 },
+    { name: "Trial", count: 5 }
+  ];
+
   return (
     <div
-      className="min-h-screen relative"
+      className="min-h-screen relative text-blue-100"
       style={{
         backgroundImage:
           "url('https://bnetcmsus-a.akamaihd.net/cms/content_entry_media/FJPT5455KR5K1589912863345.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        color: "#cfe6ff",
+        backgroundRepeat: "no-repeat"
       }}
     >
       {/* DARK OVERLAY */}
-      <div className="absolute inset-0 bg-black/80" />
+      <div className="absolute inset-0 bg-black/85" />
 
-      {/* HERO */}
-      <section className="relative z-10 text-center py-28 px-6 border-b border-blue-900/30">
+      {/* HERO / INSPECT PANEL */}
+      <div className="relative z-10 flex flex-col md:flex-row max-w-7xl mx-auto px-6 py-20 gap-10">
 
-        {/* CREST */}
-        <div className="mb-6">
-          <div className="w-28 h-28 mx-auto rounded-full border border-blue-300/30 bg-black/60 flex items-center justify-center shadow-[0_0_35px_rgba(120,180,255,0.25)]">
-            ❄️
-          </div>
-        </div>
+        {/* LEFT: CHARACTER PANEL */}
+        <div className="md:w-1/3 bg-black/70 border border-purple-900/40 rounded-xl p-6 shadow-[0_0_40px_rgba(120,0,200,0.15)]">
 
-        {/* TITLE */}
-        <h1 className="text-6xl md:text-8xl font-black uppercase tracking-widest text-blue-100 drop-shadow-[0_0_15px_rgba(80,140,255,0.6)]">
-          Glory Boys
-        </h1>
-
-        <p className="mt-6 text-lg md:text-xl text-blue-100/80 max-w-3xl mx-auto leading-relaxed">
-          A hardened World of Warcraft progression guild forged in discipline,
-          execution, and relentless improvement. We do not play to participate —
-          we play to dominate.
-        </p>
-      </section>
-
-      {/* ABOUT */}
-      <section className="relative z-10 max-w-6xl mx-auto px-6 py-16">
-        <h2 className="text-3xl font-bold text-blue-200 mb-4">
-          Who We Are
-        </h2>
-
-        <p className="text-blue-100/70 text-lg leading-relaxed">
-          Glory Boys is a high-performance raiding guild focused on endgame PvE content.
-          Every member is expected to perform at maximum efficiency, understand mechanics deeply,
-          and maintain consistency across all raid tiers.
-        </p>
-      </section>
-
-      {/* PRINCIPLES */}
-      <section className="relative z-10 max-w-6xl mx-auto px-6 py-10 grid md:grid-cols-3 gap-6">
-
-        <div className="bg-black/70 border border-blue-900/40 rounded-xl p-6">
-          <h3 className="text-xl font-bold text-blue-200 mb-2">Discipline</h3>
-          <p className="text-blue-100/70">
-            No excuses. Clean execution only.
-          </p>
-        </div>
-
-        <div className="bg-black/70 border border-blue-900/40 rounded-xl p-6">
-          <h3 className="text-xl font-bold text-blue-200 mb-2">Mastery</h3>
-          <p className="text-blue-100/70">
-            Deep class understanding and encounter control.
-          </p>
-        </div>
-
-        <div className="bg-black/70 border border-blue-900/40 rounded-xl p-6">
-          <h3 className="text-xl font-bold text-blue-200 mb-2">Consistency</h3>
-          <p className="text-blue-100/70">
-            Every raid night is performance night.
-          </p>
-        </div>
-
-      </section>
-
-      {/* RECRUITMENT */}
-      <section className="relative z-10 max-w-6xl mx-auto px-6 py-14">
-
-        <h2 className="text-3xl font-bold text-blue-200 mb-6">
-          Recruitment
-        </h2>
-
-        <p className="text-blue-100/70 text-lg mb-8 leading-relaxed">
-          We are actively recruiting skilled and committed players for progression raiding.
-          Tanks, Healers, and DPS roles are all open.
-        </p>
-
-        <div className="grid md:grid-cols-3 gap-6">
-
-          <div className="bg-black/70 border border-blue-900/40 rounded-xl p-6">
-            <h3 className="text-xl font-bold text-blue-200">Tanks</h3>
-            <p className="text-blue-100/70 mt-2">
-              Leadership and encounter control under pressure.
-            </p>
-          </div>
-
-          <div className="bg-black/70 border border-blue-900/40 rounded-xl p-6">
-            <h3 className="text-xl font-bold text-blue-200">Healers</h3>
-            <p className="text-blue-100/70 mt-2">
-              Precision healing and reaction-based gameplay.
-            </p>
-          </div>
-
-          <div className="bg-black/70 border border-blue-900/40 rounded-xl p-6">
-            <h3 className="text-xl font-bold text-blue-200">DPS</h3>
-            <p className="text-blue-100/70 mt-2">
-              Maximum damage with perfect mechanics execution.
-            </p>
-          </div>
-
-        </div>
-      </section>
-
-      {/* RAID PROGRESSION - BLIZZARD STYLE */}
-      <section className="relative z-10 max-w-6xl mx-auto px-6 py-16">
-
-        <h2 className="text-3xl font-bold text-blue-200 mb-10 text-center">
-          Raid Progression
-        </h2>
-
-        <div className="space-y-5">
-
-          {[
-            {
-              raid: "Current Raid Tier",
-              status: "All Bosses Defeated",
-              color: "green",
-            },
-            {
-              raid: "Heroic Difficulty",
-              status: "Full Clear (All Bosses)",
-              color: "blue",
-            },
-            {
-              raid: "Normal Difficulty",
-              status: "Full Clear (All Bosses)",
-              color: "green",
-            },
-            {
-              raid: "Mythic Difficulty",
-              status: "All Bosses Defeated (Final Boss Cleared)",
-              color: "purple",
-            },
-          ].map((r) => (
-            <div
-              key={r.raid}
-              className="bg-black/70 border border-blue-900/40 rounded-lg px-6 py-4 flex items-center justify-between"
-            >
-
-              {/* LEFT */}
-              <div>
-                <div className="text-blue-200 font-semibold text-lg">
-                  {r.raid}
-                </div>
-                <div className="text-blue-100/60 text-sm">
-                  Glory Boys Guild Progress
-                </div>
-              </div>
-
-              {/* RIGHT */}
-              <div className="text-right">
-                <div
-                  className={`font-bold text-sm ${
-                    r.color === "green"
-                      ? "text-green-300"
-                      : r.color === "blue"
-                      ? "text-blue-300"
-                      : "text-purple-300"
-                  }`}
-                >
-                  {r.status}
-                </div>
-
-                <div className="w-44 h-2 bg-gray-800 rounded mt-2 overflow-hidden">
-                  <div className="h-full w-full bg-gradient-to-r from-green-400 via-blue-400 to-purple-500" />
-                </div>
-              </div>
-
+          <div className="text-center mb-6">
+            <div className="w-28 h-28 mx-auto rounded-full bg-gradient-to-b from-purple-900 to-black flex items-center justify-center border border-purple-500/30">
+              <span className="text-4xl">☠️</span>
             </div>
+
+            <h1 className="text-3xl font-black mt-4 tracking-widest text-purple-200">
+              Glory Boys
+            </h1>
+
+            <p className="text-sm text-blue-100/60 mt-2">
+              Mythic Progression Guild
+            </p>
+          </div>
+
+          {/* RANK SYSTEM */}
+          <div className="space-y-3">
+            <h2 className="text-blue-200 font-bold mb-2">Guild Structure</h2>
+
+            {guildRanks.map((r) => (
+              <div
+                key={r.name}
+                className="flex justify-between text-sm border-b border-purple-900/20 pb-2"
+              >
+                <span>{r.name}</span>
+                <span className="text-purple-300">{r.count}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* INSPECT STYLE STATS */}
+          <div className="mt-6 text-sm space-y-2 text-blue-100/70">
+            <div>Raid Focus: Mythic PvE</div>
+            <div>Core Philosophy: Perfection > Completion</div>
+            <div>Status: Active Progression</div>
+          </div>
+        </div>
+
+        {/* RIGHT: RAID PANEL */}
+        <div className="md:w-2/3 space-y-6">
+
+          <h2 className="text-3xl font-bold text-blue-200 mb-4">
+            Midnight Season 1 Progression
+          </h2>
+
+          {raids.map((raid) => (
+            <details
+              key={raid.name}
+              className="bg-black/70 border border-blue-900/40 rounded-xl p-5 cursor-pointer group"
+            >
+              <summary className="list-none flex justify-between items-center">
+                <div>
+                  <h3 className="text-xl font-bold text-blue-200 group-hover:text-purple-300">
+                    {raid.name}
+                  </h3>
+                  <p className="text-sm text-blue-100/60">
+                    Click to view boss progression
+                  </p>
+                </div>
+
+                <span className="text-green-300 font-bold">
+                  Cleared
+                </span>
+              </summary>
+
+              <div className="mt-4 pl-2 border-l border-purple-900/40 space-y-2">
+                {raid.bosses.map((boss) => (
+                  <div
+                    key={boss}
+                    className="text-sm text-blue-100/80 flex justify-between"
+                  >
+                    <span>{boss}</span>
+                    <span className="text-green-300">✓ Defeated</span>
+                  </div>
+                ))}
+              </div>
+            </details>
           ))}
 
+          {/* ARMORY STYLE SUMMARY */}
+          <div className="bg-black/70 border border-purple-900/40 rounded-xl p-5 mt-8">
+            <h3 className="text-xl font-bold text-purple-300 mb-3">
+              Overall Status
+            </h3>
+
+            <div className="text-blue-100/70 text-sm space-y-2">
+              <div>✔ All Raid Tiers Cleared</div>
+              <div>✔ Full Mythic Progression Complete</div>
+              <div>✔ High-End Execution Standard Maintained</div>
+            </div>
+          </div>
+
         </div>
-      </section>
+      </div>
 
-      {/* FINAL CTA */}
-      <section className="relative z-10 text-center px-6 py-24">
-
-        <h2 className="text-4xl md:text-5xl font-black text-blue-200 mb-6">
+      {/* FOOTER CTA */}
+      <div className="relative z-10 text-center py-16">
+        <h2 className="text-4xl font-black text-purple-200">
           Join The Glory Boys
         </h2>
 
-        <p className="text-blue-100/70 max-w-3xl mx-auto text-lg leading-relaxed">
-          We are building an elite progression environment focused on performance,
-          discipline, and long-term mastery. If you are serious — you belong here.
+        <p className="text-blue-100/60 mt-3">
+          Discipline. Execution. Domination.
         </p>
 
-        <div className="mt-10 inline-block px-10 py-4 border border-blue-400 text-blue-200 rounded-xl">
+        <div className="mt-6 inline-block px-8 py-3 border border-purple-400 text-purple-200 rounded-xl">
           Recruitment Open
         </div>
-
-      </section>
-
+      </div>
     </div>
   );
 }
