@@ -45,12 +45,12 @@ body::before {
 }
 
 /* =========================
-   NEXT ROOT FIX
+   APP ROOT SAFETY LAYER
 ========================= */
-#__next {
+/* ensures Next.js app always renders above overlay */
+body > div {
   position: relative;
   z-index: 1;
-  min-height: 100vh;
 }
 
 /* =========================
@@ -98,9 +98,9 @@ a {
   position: relative;
 }
 
-/* REMOVE RED UNDERLINE */
+/* REMOVE RED UNDERLINE (safety override) */
 .blood-title::after {
-  display: none;
+  display: none !important;
 }
 
 /* =========================
