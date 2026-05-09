@@ -104,7 +104,7 @@ export default function GloryBoysGuildSite() {
   const [activeExpansion, setActiveExpansion] = useState(expansions[0])
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
-  // =============== FULL PAGE REALISTIC RAIN ===============
+  // =============== FULL PAGE REALISTIC RAIN (Reduced) ===============
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -128,7 +128,8 @@ export default function GloryBoysGuildSite() {
     resizeCanvas()
     window.addEventListener("resize", resizeCanvas)
 
-    for (let i = 0; i < 220; i++) {
+    // Reduced by 50% → 110 drops
+    for (let i = 0; i < 110; i++) {
       drops.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height - canvas.height,
@@ -187,12 +188,12 @@ export default function GloryBoysGuildSite() {
         style={{ opacity: 0.75 }}
       />
 
-      {/* Much Lighter Overlay */}
+      {/* Light Overlay */}
       <div className="fixed inset-0 bg-black/18 z-20 pointer-events-none" />
 
       {/* Main Content */}
       <div className="relative z-30">
-        {/* HERO - Epic Title */}
+        {/* HERO */}
         <section className="text-center pt-24 pb-20 px-6">
           <h1 
             className="text-7xl md:text-9xl font-black uppercase tracking-[0.08em] text-red-100 text-center relative glow-title"
