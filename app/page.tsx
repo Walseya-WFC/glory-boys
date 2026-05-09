@@ -3,7 +3,6 @@ import { useState, useEffect, useRef } from "react"
 
 export default function GloryBoysGuildSite() {
   const expansions = [
-    // ... your full expansions array (same as before) ...
     {
       expansion: "Classic",
       raids: [
@@ -109,7 +108,6 @@ export default function GloryBoysGuildSite() {
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
-
     const ctx = canvas.getContext("2d", { alpha: true })
     if (!ctx) return
 
@@ -141,7 +139,7 @@ export default function GloryBoysGuildSite() {
     }
 
     const animate = () => {
-      ctx.fillStyle = "rgba(3, 6, 18, 0.22)"
+      ctx.fillStyle = "rgba(3, 6, 18, 0.20)"
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
       ctx.strokeStyle = "rgba(165, 210, 255, 0.75)"
@@ -154,7 +152,6 @@ export default function GloryBoysGuildSite() {
         ctx.stroke()
 
         drop.y += drop.speed
-
         if (drop.y > canvas.height) {
           drop.y = -drop.length
           drop.x = Math.random() * canvas.width
@@ -183,27 +180,39 @@ export default function GloryBoysGuildSite() {
         }}
       />
 
-      {/* Full Page Rain - FIXED so it stays while scrolling */}
+      {/* Rain */}
       <canvas
         ref={canvasRef}
         className="fixed inset-0 z-10 pointer-events-none"
         style={{ opacity: 0.75 }}
       />
 
-      {/* Light Dark Overlay (you can adjust this) */}
-      <div className="fixed inset-0 bg-black/40 z-20 pointer-events-none" />
+      {/* Much Lighter Overlay */}
+      <div className="fixed inset-0 bg-black/18 z-20 pointer-events-none" />
 
       {/* Main Content */}
       <div className="relative z-30">
-        {/* HERO */}
+        {/* HERO - Epic Title */}
         <section className="text-center pt-24 pb-20 px-6">
-          <h1 className="text-7xl md:text-9xl font-black uppercase tracking-[0.25em] text-red-100 text-center relative glow-title">
+          <h1 
+            className="text-7xl md:text-9xl font-black uppercase tracking-[0.08em] text-red-100 text-center relative glow-title"
+            style={{ 
+              fontFamily: "'Cinzel', 'Playfair Display', serif",
+              textShadow: "0 0 25px rgba(255, 60, 60, 0.9), 0 0 45px rgba(180, 0, 0, 0.7)"
+            }}
+          >
             Glory Boys
           </h1>
-          <p className="mt-8 max-w-5xl mx-auto text-xl md:text-2xl text-blue-100/90 leading-relaxed">
-            Elite raiding guild dedicated to Mythic progression, achievement
-            farming, mounts, toys, pets, PvP domination, and helping both guild
-            members and the wider World of Warcraft community.
+          
+          <p 
+            className="mt-6 max-w-4xl mx-auto text-xl md:text-2xl leading-relaxed tracking-wider"
+            style={{ 
+              fontFamily: "'Cinzel', serif",
+              color: "#b8d4ff",
+              textShadow: "0 2px 12px rgba(0,0,0,0.7)"
+            }}
+          >
+            Elite raiding guild forged in the fires of Azeroth
           </p>
         </section>
 
@@ -276,7 +285,6 @@ export default function GloryBoysGuildSite() {
           <h2 className="text-5xl font-black text-center text-blue-200 mb-12">
             Raid Progression
           </h2>
-
           <div className="flex flex-wrap justify-center gap-3 mb-10">
             {expansions.map((exp) => (
               <button
