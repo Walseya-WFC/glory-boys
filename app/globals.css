@@ -229,36 +229,3 @@ a {
     transform: translate(0px, 10px);
   }
 }
-/* =========================
-   LIGHTNING FLASH OVERLAY
-========================= */
-.lightning-layer {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 20;
-}
-
-/* flash effect */
-.lightning-layer::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: white;
-  opacity: 0;
-  animation: lightningFlash 8s infinite;
-}
-
-/* random-ish flash timing using keyframes */
-@keyframes lightningFlash {
-  0%   { opacity: 0; }
-  92%  { opacity: 0; }
-
-  93%  { opacity: 0.0; }
-  94%  { opacity: 0.8; }
-  95%  { opacity: 0.2; }
-  96%  { opacity: 0.9; }
-  97%  { opacity: 0; }
-
-  100% { opacity: 0; }
-}

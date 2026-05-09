@@ -122,8 +122,6 @@ export default function GloryBoysGuildSite() {
 
       <div className="ash-layer pointer-events-none fixed inset-0 z-10" />
 
-      <div className="lightning-layer pointer-events-none fixed inset-0 z-20" />
-
       <div className="relative z-10">
 
         {/* HERO */}
