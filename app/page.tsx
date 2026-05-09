@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react"
 
 export default function GloryBoysGuildSite() {
   const expansions = [
+    // ... your full expansions array (unchanged) ...
     {
       expansion: "Classic",
       raids: [
@@ -104,7 +105,7 @@ export default function GloryBoysGuildSite() {
   const [activeExpansion, setActiveExpansion] = useState(expansions[0])
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
-  // Pure Canvas Rain Effect
+  // =============== IMPROVED REALISTIC RAIN ===============
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -129,28 +130,29 @@ export default function GloryBoysGuildSite() {
     resizeCanvas()
     window.addEventListener("resize", resizeCanvas)
 
-    // Create rain drops
-    for (let i = 0; i < 300; i++) {
+    // Create rain drops - more natural look
+    for (let i = 0; i < 220; i++) {
       drops.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height - canvas.height,
-        length: Math.random() * 18 + 14,
-        speed: Math.random() * 14 + 16,
-        opacity: Math.random() * 0.5 + 0.5
+        length: Math.random() * 14 + 10,
+        speed: Math.random() * 8 + 9,        // Slower
+        opacity: Math.random() * 0.45 + 0.35
       })
     }
 
     const animate = () => {
-      ctx.fillStyle = "rgba(3, 6, 15, 0.15)"
+      // Stronger fade = shorter trails
+      ctx.fillStyle = "rgba(3, 6, 18, 0.22)"
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-      ctx.strokeStyle = "rgba(180, 225, 255, 0.9)"
-      ctx.lineWidth = 1.6
+      ctx.strokeStyle = "rgba(165, 210, 255, 0.75)"
+      ctx.lineWidth = 1.4
 
       drops.forEach((drop) => {
         ctx.beginPath()
         ctx.moveTo(drop.x, drop.y)
-        ctx.lineTo(drop.x + 1, drop.y + drop.length)
+        ctx.lineTo(drop.x + 1.2, drop.y + drop.length)
         ctx.stroke()
 
         drop.y += drop.speed
@@ -186,13 +188,13 @@ export default function GloryBoysGuildSite() {
       <canvas
         ref={canvasRef}
         className="absolute inset-0 z-10 pointer-events-none"
-        style={{ opacity: 0.85 }}
+        style={{ opacity: 0.75 }}   // Slightly reduced overall visibility
       />
 
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/35 z-20" />
+      <div className="absolute inset-0 bg-black/38 z-20" />
 
-      {/* All Content */}
+      {/* Main Content */}
       <div className="relative z-30">
         {/* HERO */}
         <section className="text-center pt-24 pb-20 px-6">
