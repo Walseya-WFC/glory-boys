@@ -1,8 +1,12 @@
 @import "tailwindcss";
 
+/* =========================
+   BASE THEME
+========================= */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #000000;
+  --foreground: #d6e6ff;
 }
 
 @theme inline {
@@ -12,15 +16,117 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =========================
+   BLOOD TITLE EFFECT (MAIN)
+========================= */
+
+@keyframes bloodGlow {
+  0%, 100% {
+    text-shadow:
+      0 0 8px rgba(120, 0, 0, 0.6),
+      0 0 18px rgba(60, 0, 0, 0.4),
+      0 0 30px rgba(30, 0, 0, 0.2);
+  }
+
+  50% {
+    text-shadow:
+      0 0 14px rgba(200, 0, 0, 0.9),
+      0 0 35px rgba(90, 0, 0, 0.7),
+      0 0 60px rgba(40, 0, 0, 0.4);
+  }
+}
+
+/* MAIN CLASS YOU USE IN PAGE.TSX */
+.blood-title {
+  position: relative;
+  display: inline-block;
+
+  color: #0b0000; /* near-black base for dark fantasy feel */
+
+  font-weight: 900;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+
+  animation: bloodGlow 3s ease-in-out infinite;
+
+  /* extra depth */
+  filter: contrast(1.2);
+}
+
+/* DRIPPING BLOOD GLOW UNDER TEXT */
+.blood-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 100%;
+  height: 20px;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(160, 0, 0, 0.7),
+    transparent
+  );
+
+  filter: blur(6px);
+  opacity: 0.6;
+}
+
+/* BLOOD DROPLETS EFFECT */
+.blood-title::before {
+  content: "";
+  position: absolute;
+  left: 8%;
+  bottom: -18px;
+  width: 84%;
+  height: 28px;
+
+  background:
+    radial-gradient(circle at 10% 0%, rgba(200,0,0,0.8), transparent 60%),
+    radial-gradient(circle at 35% 0%, rgba(120,0,0,0.6), transparent 60%),
+    radial-gradient(circle at 60% 0%, rgba(180,0,0,0.7), transparent 60%),
+    radial-gradient(circle at 85% 0%, rgba(90,0,0,0.5), transparent 60%);
+
+  opacity: 0.75;
+  filter: blur(1px);
+}
+
+/* =========================
+   OPTIONAL ICE TITLE (KEEP FOR FUTURE)
+========================= */
+
+@keyframes frostGlow {
+  0%, 100% {
+    text-shadow:
+      0 0 10px rgba(180, 220, 255, 0.4),
+      0 0 20px rgba(120, 180, 255, 0.3);
+  }
+
+  50% {
+    text-shadow:
+      0 0 18px rgba(220, 245, 255, 0.8),
+      0 0 35px rgba(140, 200, 255, 0.5);
+  }
+}
+
+.ice-title {
+  color: #d8f3ff;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 900;
+  animation: frostGlow 3s ease-in-out infinite;
+}
+
+/* =========================
+   BASIC LAYOUT HELPERS
+========================= */
+
+html, body {
+  height: 100%;
 }
