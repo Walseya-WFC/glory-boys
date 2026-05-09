@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react"
 
 export default function GloryBoysGuildSite() {
   const expansions = [
+    // ... (all expansions unchanged) ...
     {
       expansion: "Midnight",
       raids: [
@@ -127,7 +128,7 @@ export default function GloryBoysGuildSite() {
     return difficulties
   }
 
-  // =============== RAIN EFFECT - Slower + Fel Green ===============
+  // Rain Effect (unchanged)
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -156,7 +157,7 @@ export default function GloryBoysGuildSite() {
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height - canvas.height,
         length: Math.random() * 14 + 10,
-        speed: Math.random() * 6.4 + 7.2,     // ~20% slower
+        speed: Math.random() * 6.4 + 7.2,
         opacity: Math.random() * 0.45 + 0.35
       })
     }
@@ -165,7 +166,7 @@ export default function GloryBoysGuildSite() {
       ctx.fillStyle = "rgba(3, 6, 18, 0.20)"
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-      ctx.strokeStyle = "rgba(80, 255, 140, 0.85)"   // Dark Fel Green
+      ctx.strokeStyle = "rgba(80, 255, 140, 0.85)"
       ctx.lineWidth = 1.5
 
       drops.forEach((drop) => {
@@ -210,7 +211,7 @@ export default function GloryBoysGuildSite() {
       <div className="fixed inset-0 bg-black/18 z-20 pointer-events-none" />
 
       <div className="relative z-30">
-        {/* HERO - Green Glow Title */}
+        {/* HERO - Updated Subtitle */}
         <section className="text-center pt-24 pb-20 px-6">
           <h1 
             className="text-7xl md:text-9xl font-black uppercase tracking-[0.08em] text-green-100 text-center relative glow-title"
@@ -222,19 +223,20 @@ export default function GloryBoysGuildSite() {
             Glory Boys
           </h1>
           
+          {/* Updated & Bigger Fiery Subtitle */}
           <p 
-            className="mt-6 max-w-4xl mx-auto text-xl md:text-2xl leading-relaxed tracking-wider"
+            className="mt-8 max-w-4xl mx-auto text-3xl md:text-5xl font-bold tracking-wider leading-tight"
             style={{ 
               fontFamily: "'Cinzel', serif",
-              color: "#b8d4ff",
-              textShadow: "0 2px 12px rgba(0,0,0,0.7)"
+              color: "#ffcc80",
+              textShadow: "0 0 20px #ff6600, 0 0 40px #ff3300, 0 0 60px #ff0000, 0 0 80px #cc0000"
             }}
           >
-            Elite raiding guild forged in the fires of Azeroth
+            Elite PvE/PvP guild forged in the fires of Azeroth
           </p>
         </section>
 
-        {/* All other sections remain exactly the same */}
+        {/* Everything below this is completely unchanged */}
         <section className="max-w-6xl mx-auto px-6 py-10">
           <div className="bg-black/50 border border-blue-900/40 rounded-3xl p-10 backdrop-blur-sm">
             <h2 className="text-4xl font-bold text-blue-200 mb-6">About Glory Boys</h2>
@@ -270,7 +272,7 @@ export default function GloryBoysGuildSite() {
           </div>
         </section>
 
-        {/* RAID PROGRESSION - unchanged except difficulties logic from before */}
+        {/* Raid Progression, Footer etc. remain unchanged */}
         <section className="max-w-7xl mx-auto px-6 py-16">
           <h2 className="text-5xl font-black text-center text-blue-200 mb-12">Raid Progression</h2>
 
@@ -324,7 +326,9 @@ export default function GloryBoysGuildSite() {
         <section className="text-center px-6 pb-24 pt-10">
           <h2 className="text-5xl font-black text-red-200 mb-6">Recruitment Open</h2>
           <p className="max-w-4xl mx-auto text-xl text-blue-100/85 leading-relaxed">
-            We seek dedicated players who value teamwork, progression, consistency, and community. Join us as we conquer every challenge Azeroth has to offer.
+            We seek dedicated players who value teamwork, progression,
+            consistency, and community. Join us as we conquer every challenge
+            Azeroth has to offer.
           </p>
           <div className="mt-10 inline-block px-10 py-4 rounded-2xl border border-red-800/60 bg-black/50 text-red-100 text-xl font-bold shadow-[0_0_30px_rgba(120,0,0,0.5)]">
             Tanks • Healers • DPS Needed
