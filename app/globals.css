@@ -134,7 +134,7 @@ a {
   }
 }
 /* =========================
-   DRIFTING ASH PARTICLES
+   DRIFTING ASH (IMPROVED RANDOMNESS)
 ========================= */
 .ash-layer {
   position: fixed;
@@ -144,55 +144,121 @@ a {
   z-index: 5;
 }
 
-/* main ash particles */
+/* Layer 1 - small ash (dense, slow) */
 .ash-layer::before {
   content: "";
   position: absolute;
   inset: -50%;
   background-image: radial-gradient(
-    circle,
-    rgba(220, 220, 220, 0.8) 0px,
-    rgba(220, 220, 220, 0.3) 2px,
-    transparent 5px
-  );
+      circle,
+      rgba(220, 220, 220, 0.9) 0px,
+      transparent 3px
+    ),
+    radial-gradient(
+      circle,
+      rgba(200, 200, 200, 0.6) 0px,
+      transparent 2px
+    ),
+    radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.4) 0px,
+      transparent 4px
+    );
 
-  background-size: 140px 140px;
-  animation: ashFloat 18s linear infinite;
+  background-size:
+    120px 180px,
+    200px 260px,
+    300px 400px;
+
+  background-position:
+    0 0,
+    40px 60px,
+    120px 200px;
+
+  animation: ashDrift1 22s linear infinite;
   opacity: 0.35;
   filter: blur(0.4px);
 }
 
-/* subtle secondary layer for depth */
+/* Layer 2 - sparse larger ash (adds randomness illusion) */
 .ash-layer::after {
   content: "";
   position: absolute;
-  inset: -50%;
+  inset: -60%;
   background-image: radial-gradient(
     circle,
-    rgba(255, 255, 255, 0.4) 0px,
-    transparent 4px
+    rgba(255, 255, 255, 0.5) 0px,
+    transparent 5px
   );
 
-  background-size: 220px 220px;
-  animation: ashFloat2 28s linear infinite;
+  background-size: 250px 300px;
+  background-position: 80px 120px;
+
+  animation: ashDrift2 35s linear infinite;
   opacity: 0.2;
+  filter: blur(0.6px);
 }
 
-/* movement */
-@keyframes ashFloat {
+/* slow chaotic drift */
+@keyframes ashDrift1 {
   0% {
-    transform: translateY(-10%) translateX(-5%);
+    transform: translate(0px, -10px);
+  }
+  25% {
+    transform: translate(10px, 5px);
+  }
+  50% {
+    transform: translate(-8px, 10px);
+  }
+  75% {
+    transform: translate(6px, -5px);
   }
   100% {
-    transform: translateY(10%) translateX(5%);
+    transform: translate(0px, -10px);
   }
 }
 
-@keyframes ashFloat2 {
+@keyframes ashDrift2 {
   0% {
-    transform: translateY(5%) translateX(3%);
+    transform: translate(0px, 10px);
+  }
+  50% {
+    transform: translate(-10px, -8px);
   }
   100% {
-    transform: translateY(-5%) translateX(-3%);
+    transform: translate(0px, 10px);
   }
+}
+/* =========================
+   LIGHTNING FLASH OVERLAY
+========================= */
+.lightning-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 20;
+}
+
+/* flash effect */
+.lightning-layer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: white;
+  opacity: 0;
+  animation: lightningFlash 8s infinite;
+}
+
+/* random-ish flash timing using keyframes */
+@keyframes lightningFlash {
+  0%   { opacity: 0; }
+  92%  { opacity: 0; }
+
+  93%  { opacity: 0.0; }
+  94%  { opacity: 0.8; }
+  95%  { opacity: 0.2; }
+  96%  { opacity: 0.9; }
+  97%  { opacity: 0; }
+
+  100% { opacity: 0; }
 }
