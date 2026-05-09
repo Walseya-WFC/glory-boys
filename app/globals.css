@@ -16,6 +16,7 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* DARK WORLD BASE */
 body {
   background: var(--background);
   color: var(--foreground);
@@ -23,7 +24,17 @@ body {
 }
 
 /* =========================
-   BLOOD TITLE EFFECT (MAIN)
+   IMPORTANT: ENABLE SCROLL
+========================= */
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* =========================
+   BLOOD TITLE EFFECT (GLORY BOYS)
 ========================= */
 
 @keyframes bloodGlow {
@@ -31,23 +42,22 @@ body {
     text-shadow:
       0 0 8px rgba(120, 0, 0, 0.6),
       0 0 18px rgba(60, 0, 0, 0.4),
-      0 0 30px rgba(30, 0, 0, 0.2);
+      0 0 30px rgba(20, 0, 0, 0.2);
   }
 
   50% {
     text-shadow:
       0 0 14px rgba(200, 0, 0, 0.9),
-      0 0 35px rgba(90, 0, 0, 0.7),
+      0 0 35px rgba(90, 0, 0, 0.6),
       0 0 60px rgba(40, 0, 0, 0.4);
   }
 }
 
-/* MAIN CLASS YOU USE IN PAGE.TSX */
 .blood-title {
   position: relative;
   display: inline-block;
 
-  color: #0b0000; /* near-black base for dark fantasy feel */
+  color: #0a0000;
 
   font-weight: 900;
   letter-spacing: 4px;
@@ -55,50 +65,48 @@ body {
 
   animation: bloodGlow 3s ease-in-out infinite;
 
-  /* extra depth */
   filter: contrast(1.2);
 }
 
-/* DRIPPING BLOOD GLOW UNDER TEXT */
+/* SUBTLE BLOOD GLOW (NO LINE UNDER TEXT) */
 .blood-title::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -10px;
+  bottom: -8px;
   width: 100%;
-  height: 20px;
+  height: 14px;
 
   background: linear-gradient(
     to bottom,
-    rgba(160, 0, 0, 0.7),
+    rgba(160, 0, 0, 0.25),
     transparent
   );
 
   filter: blur(6px);
-  opacity: 0.6;
+  opacity: 0.35;
 }
 
-/* BLOOD DROPLETS EFFECT */
+/* DRIPPING BLOOD DOTS (VERY SUBTLE) */
 .blood-title::before {
   content: "";
   position: absolute;
-  left: 8%;
-  bottom: -18px;
-  width: 84%;
-  height: 28px;
+  left: 10%;
+  bottom: -16px;
+  width: 80%;
+  height: 22px;
 
   background:
-    radial-gradient(circle at 10% 0%, rgba(200,0,0,0.8), transparent 60%),
-    radial-gradient(circle at 35% 0%, rgba(120,0,0,0.6), transparent 60%),
-    radial-gradient(circle at 60% 0%, rgba(180,0,0,0.7), transparent 60%),
-    radial-gradient(circle at 85% 0%, rgba(90,0,0,0.5), transparent 60%);
+    radial-gradient(circle at 15% 0%, rgba(180,0,0,0.6), transparent 60%),
+    radial-gradient(circle at 50% 0%, rgba(120,0,0,0.5), transparent 60%),
+    radial-gradient(circle at 85% 0%, rgba(200,0,0,0.4), transparent 60%);
 
-  opacity: 0.75;
+  opacity: 0.6;
   filter: blur(1px);
 }
 
 /* =========================
-   OPTIONAL ICE TITLE (KEEP FOR FUTURE)
+   ICE TITLE (OPTIONAL BACKUP STYLE)
 ========================= */
 
 @keyframes frostGlow {
@@ -124,9 +132,9 @@ body {
 }
 
 /* =========================
-   BASIC LAYOUT HELPERS
+   SAFE RESET HELPERS
 ========================= */
 
-html, body {
-  height: 100%;
+* {
+  box-sizing: border-box;
 }

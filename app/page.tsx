@@ -1,7 +1,7 @@
 export default function GloryBoysGuildSite() {
   return (
     <div
-      className="min-h-screen overflow-hidden relative"
+      className="min-h-screen relative"
       style={{
         fontFamily: "Cinzel, serif",
         color: "#cfe6ff",
