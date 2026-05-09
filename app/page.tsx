@@ -104,26 +104,21 @@ export default function GloryBoysGuildSite() {
   const [activeExpansion, setActiveExpansion] = useState(expansions[0])
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
-  // Updated difficulties
   const getDifficulties = (expansionName: string, raidName: string) => {
     const difficulties = []
 
-    // LFR for all raids from Cataclysm Dragon Soul and newer
     if (expansionName === "Cataclysm" && raidName === "Dragon Soul" || 
         ["Mists of Pandaria", "Warlords of Draenor", "Legion", "Battle for Azeroth", 
          "Shadowlands", "Dragonflight", "The War Within", "Midnight"].includes(expansionName)) {
       difficulties.push({ difficulty: "LFR", color: "bg-blue-500", text: "text-blue-300" })
     }
 
-    // Normal mode for everyone
     difficulties.push({ difficulty: "Normal", color: "bg-green-500", text: "text-green-300" })
 
-    // Heroic
     if (expansionName !== "Classic" && expansionName !== "The Burning Crusade") {
       difficulties.push({ difficulty: "Heroic", color: "bg-yellow-500", text: "text-yellow-300" })
     }
 
-    // Mythic
     if (["Mists of Pandaria", "Warlords of Draenor", "Legion", "Battle for Azeroth", 
          "Shadowlands", "Dragonflight", "The War Within", "Midnight"].includes(expansionName)) {
       difficulties.push({ difficulty: "Mythic", color: "bg-red-500", text: "text-red-300" })
@@ -132,7 +127,7 @@ export default function GloryBoysGuildSite() {
     return difficulties
   }
 
-  // =============== RAIN EFFECT ===============
+  // =============== RAIN EFFECT - Slower + Fel Green ===============
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -161,7 +156,7 @@ export default function GloryBoysGuildSite() {
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height - canvas.height,
         length: Math.random() * 14 + 10,
-        speed: Math.random() * 8 + 9,
+        speed: Math.random() * 6.4 + 7.2,     // ~20% slower
         opacity: Math.random() * 0.45 + 0.35
       })
     }
@@ -170,8 +165,8 @@ export default function GloryBoysGuildSite() {
       ctx.fillStyle = "rgba(3, 6, 18, 0.20)"
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-      ctx.strokeStyle = "rgba(165, 210, 255, 0.75)"
-      ctx.lineWidth = 1.4
+      ctx.strokeStyle = "rgba(80, 255, 140, 0.85)"   // Dark Fel Green
+      ctx.lineWidth = 1.5
 
       drops.forEach((drop) => {
         ctx.beginPath()
@@ -199,7 +194,6 @@ export default function GloryBoysGuildSite() {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-fixed"
         style={{
@@ -207,25 +201,22 @@ export default function GloryBoysGuildSite() {
         }}
       />
 
-      {/* Rain */}
       <canvas
         ref={canvasRef}
         className="fixed inset-0 z-10 pointer-events-none"
         style={{ opacity: 0.75 }}
       />
 
-      {/* Light Overlay */}
       <div className="fixed inset-0 bg-black/18 z-20 pointer-events-none" />
 
-      {/* Main Content */}
       <div className="relative z-30">
-        {/* HERO - unchanged */}
+        {/* HERO - Green Glow Title */}
         <section className="text-center pt-24 pb-20 px-6">
           <h1 
-            className="text-7xl md:text-9xl font-black uppercase tracking-[0.08em] text-red-100 text-center relative glow-title"
+            className="text-7xl md:text-9xl font-black uppercase tracking-[0.08em] text-green-100 text-center relative glow-title"
             style={{ 
               fontFamily: "'Cinzel', 'Playfair Display', serif",
-              textShadow: "0 0 25px rgba(255, 60, 60, 0.9), 0 0 45px rgba(180, 0, 0, 0.7)"
+              textShadow: "0 0 25px rgba(80, 255, 140, 0.9), 0 0 45px rgba(0, 200, 100, 0.7), 0 0 70px rgba(0, 150, 80, 0.5)"
             }}
           >
             Glory Boys
@@ -243,7 +234,7 @@ export default function GloryBoysGuildSite() {
           </p>
         </section>
 
-        {/* GUILD INFO - unchanged */}
+        {/* All other sections remain exactly the same */}
         <section className="max-w-6xl mx-auto px-6 py-10">
           <div className="bg-black/50 border border-blue-900/40 rounded-3xl p-10 backdrop-blur-sm">
             <h2 className="text-4xl font-bold text-blue-200 mb-6">About Glory Boys</h2>
@@ -263,7 +254,6 @@ export default function GloryBoysGuildSite() {
           </div>
         </section>
 
-        {/* RECRUITMENT - unchanged */}
         <section className="max-w-6xl mx-auto px-6 py-8">
           <div className="grid md:grid-cols-3 gap-6">
             {[
@@ -280,11 +270,9 @@ export default function GloryBoysGuildSite() {
           </div>
         </section>
 
-        {/* RAID PROGRESSION - Reversed order + updated difficulties */}
+        {/* RAID PROGRESSION - unchanged except difficulties logic from before */}
         <section className="max-w-7xl mx-auto px-6 py-16">
-          <h2 className="text-5xl font-black text-center text-blue-200 mb-12">
-            Raid Progression
-          </h2>
+          <h2 className="text-5xl font-black text-center text-blue-200 mb-12">Raid Progression</h2>
 
           <div className="flex flex-wrap justify-center gap-3 mb-10">
             {expansions.map((exp) => (
@@ -292,12 +280,7 @@ export default function GloryBoysGuildSite() {
                 key={exp.expansion}
                 onClick={() => setActiveExpansion(exp)}
                 className={`px-5 py-3 rounded-xl border transition-all duration-200 text-sm md:text-base font-bold
-                  ${
-                    activeExpansion.expansion === exp.expansion
-                      ? "bg-red-900/70 border-red-500 text-red-100 shadow-[0_0_20px_rgba(120,0,0,0.6)]"
-                      : "bg-black/50 border-blue-900/40 text-blue-100 hover:bg-blue-950/40"
-                  }
-                `}
+                  ${activeExpansion.expansion === exp.expansion ? "bg-red-900/70 border-red-500 text-red-100 shadow-[0_0_20px_rgba(120,0,0,0.6)]" : "bg-black/50 border-blue-900/40 text-blue-100 hover:bg-blue-950/40"}`}
               >
                 {exp.expansion}
               </button>
@@ -308,17 +291,12 @@ export default function GloryBoysGuildSite() {
             {activeExpansion.raids.map((raid) => {
               const difficulties = getDifficulties(activeExpansion.expansion, raid.name)
               return (
-                <div
-                  key={raid.name}
-                  className="bg-black/50 border border-blue-900/40 rounded-3xl overflow-hidden backdrop-blur-sm"
-                >
+                <div key={raid.name} className="bg-black/50 border border-blue-900/40 rounded-3xl overflow-hidden backdrop-blur-sm">
                   <div className="bg-gradient-to-r from-red-950/80 via-black to-blue-950/80 px-8 py-5 border-b border-blue-900/40">
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                       <div>
                         <h3 className="text-3xl font-black text-blue-100">{raid.name}</h3>
-                        <div className="text-blue-200/70 mt-1">
-                          {raid.bosses} / {raid.bosses} Bosses Defeated
-                        </div>
+                        <div className="text-blue-200/70 mt-1">{raid.bosses} / {raid.bosses} Bosses Defeated</div>
                       </div>
                       <div className="text-green-300 font-bold text-xl">100% Cleared</div>
                     </div>
@@ -328,18 +306,11 @@ export default function GloryBoysGuildSite() {
                     {difficulties.map((difficulty) => (
                       <div key={difficulty.difficulty}>
                         <div className="flex justify-between mb-2">
-                          <div className={`font-bold ${difficulty.text}`}>
-                            {difficulty.difficulty}
-                          </div>
-                          <div className={`${difficulty.text}`}>
-                            {raid.bosses}/{raid.bosses}
-                          </div>
+                          <div className={`font-bold ${difficulty.text}`}>{difficulty.difficulty}</div>
+                          <div className={`${difficulty.text}`}>{raid.bosses}/{raid.bosses}</div>
                         </div>
                         <div className="w-full h-5 rounded-full bg-black/60 border border-blue-900/40 overflow-hidden">
-                          <div
-                            className={`h-full ${difficulty.color} shadow-[0_0_15px_rgba(255,255,255,0.2)]`}
-                            style={{ width: "100%" }}
-                          />
+                          <div className={`h-full ${difficulty.color} shadow-[0_0_15px_rgba(255,255,255,0.2)]`} style={{ width: "100%" }} />
                         </div>
                       </div>
                     ))}
@@ -350,15 +321,10 @@ export default function GloryBoysGuildSite() {
           </div>
         </section>
 
-        {/* FOOTER */}
         <section className="text-center px-6 pb-24 pt-10">
-          <h2 className="text-5xl font-black text-red-200 mb-6">
-            Recruitment Open
-          </h2>
+          <h2 className="text-5xl font-black text-red-200 mb-6">Recruitment Open</h2>
           <p className="max-w-4xl mx-auto text-xl text-blue-100/85 leading-relaxed">
-            We seek dedicated players who value teamwork, progression,
-            consistency, and community. Join us as we conquer every challenge
-            Azeroth has to offer.
+            We seek dedicated players who value teamwork, progression, consistency, and community. Join us as we conquer every challenge Azeroth has to offer.
           </p>
           <div className="mt-10 inline-block px-10 py-4 rounded-2xl border border-red-800/60 bg-black/50 text-red-100 text-xl font-bold shadow-[0_0_30px_rgba(120,0,0,0.5)]">
             Tanks • Healers • DPS Needed
