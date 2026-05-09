@@ -104,49 +104,76 @@ export default function GloryBoysGuildSite() {
   const [activeExpansion, setActiveExpansion] = useState(expansions[0])
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
-  // ==================== RAINYDAY.JS SETUP ====================
+  // Pure Canvas Rain Effect
   useEffect(() => {
-    const script = document.createElement("script")
-    script.src = "/rainyday.js"
-    script.async = true
+    const canvas = canvasRef.current
+    if (!canvas) return
 
-    script.onload = () => {
-      const img = new Image()
-      img.crossOrigin = "anonymous"
-      img.src = "https://images5.alphacoders.com/881/thumb-1920-881374.jpg"
+    const ctx = canvas.getContext("2d", { alpha: true })
+    if (!ctx) return
 
-      img.onload = () => {
-        const canvas = canvasRef.current
-        if (!canvas || !(window as any).RainyDay) return
+    let animationFrame: number
+    const drops: Array<{
+      x: number
+      y: number
+      length: number
+      speed: number
+      opacity: number
+    }> = []
 
-        const engine = new (window as any).RainyDay({
-          image: img,
-          canvas: canvas,
-          opacity: 0.75,
-          blur: 10,
-          gravity: 18,
-          fps: 30,
-        })
-
-        engine.rain([
-          [1, 0, 2],
-          [3, 2, 4],
-          [5, 4, 8]
-        ], 45)
-      }
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
     }
 
-    document.head.appendChild(script)
+    resizeCanvas()
+    window.addEventListener("resize", resizeCanvas)
+
+    // Create rain drops
+    for (let i = 0; i < 300; i++) {
+      drops.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height - canvas.height,
+        length: Math.random() * 18 + 14,
+        speed: Math.random() * 14 + 16,
+        opacity: Math.random() * 0.5 + 0.5
+      })
+    }
+
+    const animate = () => {
+      ctx.fillStyle = "rgba(3, 6, 15, 0.15)"
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+      ctx.strokeStyle = "rgba(180, 225, 255, 0.9)"
+      ctx.lineWidth = 1.6
+
+      drops.forEach((drop) => {
+        ctx.beginPath()
+        ctx.moveTo(drop.x, drop.y)
+        ctx.lineTo(drop.x + 1, drop.y + drop.length)
+        ctx.stroke()
+
+        drop.y += drop.speed
+
+        if (drop.y > canvas.height) {
+          drop.y = -drop.length
+          drop.x = Math.random() * canvas.width
+        }
+      })
+
+      animationFrame = requestAnimationFrame(animate)
+    }
+
+    animate()
 
     return () => {
-      const existingScript = document.querySelector('script[src="/rainyday.js"]')
-      if (existingScript) existingScript.remove()
+      window.removeEventListener("resize", resizeCanvas)
+      cancelAnimationFrame(animationFrame)
     }
   }, [])
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-fixed"
@@ -155,17 +182,17 @@ export default function GloryBoysGuildSite() {
         }}
       />
 
-      {/* Rain Canvas */}
+      {/* Rain Layer */}
       <canvas
         ref={canvasRef}
         className="absolute inset-0 z-10 pointer-events-none"
         style={{ opacity: 0.85 }}
       />
 
-      {/* Dark Shade */}
-      <div className="absolute inset-0 bg-black/30 z-20" />
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/35 z-20" />
 
-      {/* Main Content - Everything you had before */}
+      {/* All Content */}
       <div className="relative z-30">
         {/* HERO */}
         <section className="text-center pt-24 pb-20 px-6">
@@ -243,11 +270,12 @@ export default function GloryBoysGuildSite() {
           </div>
         </section>
 
-        {/* ARMORY STYLE RAID PROGRESSION */}
+        {/* RAID PROGRESSION */}
         <section className="max-w-7xl mx-auto px-6 py-16">
           <h2 className="text-5xl font-black text-center text-blue-200 mb-12">
             Raid Progression
           </h2>
+
           <div className="flex flex-wrap justify-center gap-3 mb-10">
             {expansions.map((exp) => (
               <button
@@ -290,21 +318,9 @@ export default function GloryBoysGuildSite() {
 
                 <div className="p-8 space-y-6">
                   {[
-                    {
-                      difficulty: "Normal",
-                      color: "bg-green-500",
-                      text: "text-green-300"
-                    },
-                    {
-                      difficulty: "Heroic",
-                      color: "bg-yellow-500",
-                      text: "text-yellow-300"
-                    },
-                    {
-                      difficulty: "Mythic",
-                      color: "bg-red-500",
-                      text: "text-red-300"
-                    }
+                    { difficulty: "Normal", color: "bg-green-500", text: "text-green-300" },
+                    { difficulty: "Heroic", color: "bg-yellow-500", text: "text-yellow-300" },
+                    { difficulty: "Mythic", color: "bg-red-500", text: "text-red-300" }
                   ].map((difficulty) => (
                     <div key={difficulty.difficulty}>
                       <div className="flex justify-between mb-2">
