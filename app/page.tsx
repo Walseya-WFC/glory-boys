@@ -4,12 +4,81 @@ import { useState, useEffect, useRef } from "react"
 export default function GloryBoysGuildSite() {
   const expansions = [
     {
-      expansion: "Classic",
+      expansion: "Midnight",
       raids: [
-        { name: "Molten Core", bosses: 10 },
-        { name: "Blackwing Lair", bosses: 8 },
-        { name: "Temple of Ahn'Qiraj", bosses: 9 },
-        { name: "Naxxramas", bosses: 15 }
+        { name: "The Voidspire", bosses: 6 },
+        { name: "The Dreamrift", bosses: 1 },
+        { name: "March on Quel'Danas", bosses: 2 }
+      ]
+    },
+    {
+      expansion: "The War Within",
+      raids: [
+        { name: "Nerub-ar Palace", bosses: 8 }
+      ]
+    },
+    {
+      expansion: "Dragonflight",
+      raids: [
+        { name: "Vault of the Incarnates", bosses: 8 },
+        { name: "Aberrus", bosses: 9 },
+        { name: "Amirdrassil", bosses: 9 }
+      ]
+    },
+    {
+      expansion: "Shadowlands",
+      raids: [
+        { name: "Castle Nathria", bosses: 10 },
+        { name: "Sanctum of Domination", bosses: 10 },
+        { name: "Sepulcher", bosses: 11 }
+      ]
+    },
+    {
+      expansion: "Battle for Azeroth",
+      raids: [
+        { name: "Uldir", bosses: 8 },
+        { name: "Battle of Dazar'alor", bosses: 9 },
+        { name: "Ny'alotha", bosses: 12 }
+      ]
+    },
+    {
+      expansion: "Legion",
+      raids: [
+        { name: "Emerald Nightmare", bosses: 7 },
+        { name: "Nighthold", bosses: 10 },
+        { name: "Antorus", bosses: 11 }
+      ]
+    },
+    {
+      expansion: "Warlords of Draenor",
+      raids: [
+        { name: "Highmaul", bosses: 7 },
+        { name: "Blackrock Foundry", bosses: 10 },
+        { name: "Hellfire Citadel", bosses: 13 }
+      ]
+    },
+    {
+      expansion: "Mists of Pandaria",
+      raids: [
+        { name: "Mogu'shan Vaults", bosses: 6 },
+        { name: "Throne of Thunder", bosses: 13 },
+        { name: "Siege of Orgrimmar", bosses: 14 }
+      ]
+    },
+    {
+      expansion: "Cataclysm",
+      raids: [
+        { name: "Blackwing Descent", bosses: 6 },
+        { name: "Firelands", bosses: 7 },
+        { name: "Dragon Soul", bosses: 8 }
+      ]
+    },
+    {
+      expansion: "Wrath of the Lich King",
+      raids: [
+        { name: "Ulduar", bosses: 14 },
+        { name: "Icecrown Citadel", bosses: 12 },
+        { name: "Ruby Sanctum", bosses: 1 }
       ]
     },
     {
@@ -22,81 +91,12 @@ export default function GloryBoysGuildSite() {
       ]
     },
     {
-      expansion: "Wrath of the Lich King",
+      expansion: "Classic",
       raids: [
-        { name: "Ulduar", bosses: 14 },
-        { name: "Icecrown Citadel", bosses: 12 },
-        { name: "Ruby Sanctum", bosses: 1 }
-      ]
-    },
-    {
-      expansion: "Cataclysm",
-      raids: [
-        { name: "Blackwing Descent", bosses: 6 },
-        { name: "Firelands", bosses: 7 },
-        { name: "Dragon Soul", bosses: 8 }
-      ]
-    },
-    {
-      expansion: "Mists of Pandaria",
-      raids: [
-        { name: "Mogu'shan Vaults", bosses: 6 },
-        { name: "Throne of Thunder", bosses: 13 },
-        { name: "Siege of Orgrimmar", bosses: 14 }
-      ]
-    },
-    {
-      expansion: "Warlords of Draenor",
-      raids: [
-        { name: "Highmaul", bosses: 7 },
-        { name: "Blackrock Foundry", bosses: 10 },
-        { name: "Hellfire Citadel", bosses: 13 }
-      ]
-    },
-    {
-      expansion: "Legion",
-      raids: [
-        { name: "Emerald Nightmare", bosses: 7 },
-        { name: "Nighthold", bosses: 10 },
-        { name: "Antorus", bosses: 11 }
-      ]
-    },
-    {
-      expansion: "Battle for Azeroth",
-      raids: [
-        { name: "Uldir", bosses: 8 },
-        { name: "Battle of Dazar'alor", bosses: 9 },
-        { name: "Ny'alotha", bosses: 12 }
-      ]
-    },
-    {
-      expansion: "Shadowlands",
-      raids: [
-        { name: "Castle Nathria", bosses: 10 },
-        { name: "Sanctum of Domination", bosses: 10 },
-        { name: "Sepulcher", bosses: 11 }
-      ]
-    },
-    {
-      expansion: "Dragonflight",
-      raids: [
-        { name: "Vault of the Incarnates", bosses: 8 },
-        { name: "Aberrus", bosses: 9 },
-        { name: "Amirdrassil", bosses: 9 }
-      ]
-    },
-    {
-      expansion: "The War Within",
-      raids: [
-        { name: "Nerub-ar Palace", bosses: 8 }
-      ]
-    },
-    {
-      expansion: "Midnight",
-      raids: [
-        { name: "The Voidspire", bosses: 6 },
-        { name: "The Dreamrift", bosses: 1 },
-        { name: "March on Quel'Danas", bosses: 2 }
+        { name: "Molten Core", bosses: 10 },
+        { name: "Blackwing Lair", bosses: 8 },
+        { name: "Temple of Ahn'Qiraj", bosses: 9 },
+        { name: "Naxxramas", bosses: 15 }
       ]
     }
   ]
@@ -104,26 +104,35 @@ export default function GloryBoysGuildSite() {
   const [activeExpansion, setActiveExpansion] = useState(expansions[0])
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
-  // Updated realistic difficulties
-  const getDifficulties = (expansionName: string) => {
-    if (expansionName === "Classic" || expansionName === "The Burning Crusade") {
-      return [{ difficulty: "Normal", color: "bg-green-500", text: "text-green-300" }]
+  // Updated difficulties
+  const getDifficulties = (expansionName: string, raidName: string) => {
+    const difficulties = []
+
+    // LFR for all raids from Cataclysm Dragon Soul and newer
+    if (expansionName === "Cataclysm" && raidName === "Dragon Soul" || 
+        ["Mists of Pandaria", "Warlords of Draenor", "Legion", "Battle for Azeroth", 
+         "Shadowlands", "Dragonflight", "The War Within", "Midnight"].includes(expansionName)) {
+      difficulties.push({ difficulty: "LFR", color: "bg-blue-500", text: "text-blue-300" })
     }
-    if (["Wrath of the Lich King", "Cataclysm", "Mists of Pandaria"].includes(expansionName)) {
-      return [
-        { difficulty: "Normal", color: "bg-green-500", text: "text-green-300" },
-        { difficulty: "Heroic", color: "bg-yellow-500", text: "text-yellow-300" }
-      ]
+
+    // Normal mode for everyone
+    difficulties.push({ difficulty: "Normal", color: "bg-green-500", text: "text-green-300" })
+
+    // Heroic
+    if (expansionName !== "Classic" && expansionName !== "The Burning Crusade") {
+      difficulties.push({ difficulty: "Heroic", color: "bg-yellow-500", text: "text-yellow-300" })
     }
-    // Warlords of Draenor and newer
-    return [
-      { difficulty: "Normal", color: "bg-green-500", text: "text-green-300" },
-      { difficulty: "Heroic", color: "bg-yellow-500", text: "text-yellow-300" },
-      { difficulty: "Mythic", color: "bg-red-500", text: "text-red-300" }
-    ]
+
+    // Mythic
+    if (["Mists of Pandaria", "Warlords of Draenor", "Legion", "Battle for Azeroth", 
+         "Shadowlands", "Dragonflight", "The War Within", "Midnight"].includes(expansionName)) {
+      difficulties.push({ difficulty: "Mythic", color: "bg-red-500", text: "text-red-300" })
+    }
+
+    return difficulties
   }
 
-  // =============== FULL PAGE REALISTIC RAIN ===============
+  // =============== RAIN EFFECT ===============
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -190,7 +199,6 @@ export default function GloryBoysGuildSite() {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-fixed"
@@ -211,7 +219,7 @@ export default function GloryBoysGuildSite() {
 
       {/* Main Content */}
       <div className="relative z-30">
-        {/* HERO */}
+        {/* HERO - unchanged */}
         <section className="text-center pt-24 pb-20 px-6">
           <h1 
             className="text-7xl md:text-9xl font-black uppercase tracking-[0.08em] text-red-100 text-center relative glow-title"
@@ -235,21 +243,13 @@ export default function GloryBoysGuildSite() {
           </p>
         </section>
 
-        {/* GUILD INFO */}
+        {/* GUILD INFO - unchanged */}
         <section className="max-w-6xl mx-auto px-6 py-10">
           <div className="bg-black/50 border border-blue-900/40 rounded-3xl p-10 backdrop-blur-sm">
-            <h2 className="text-4xl font-bold text-blue-200 mb-6">
-              About Glory Boys
-            </h2>
+            <h2 className="text-4xl font-bold text-blue-200 mb-6">About Glory Boys</h2>
             <div className="space-y-5 text-lg text-blue-100/85 leading-relaxed">
-              <p>
-                We are a progression-focused guild forged through discipline,
-                preparation, loyalty, and execution. Every encounter is studied,
-                every mechanic mastered, and every victory earned together.
-              </p>
-              <p>
-                Outside progression raiding, our members actively participate in:
-              </p>
+              <p>We are a progression-focused guild forged through discipline, preparation, loyalty, and execution. Every encounter is studied, every mechanic mastered, and every victory earned together.</p>
+              <p>Outside progression raiding, our members actively participate in:</p>
               <ul className="list-disc list-inside space-y-2 text-blue-100/80">
                 <li>Achievement Farming</li>
                 <li>Rare Mount Runs</li>
@@ -263,43 +263,24 @@ export default function GloryBoysGuildSite() {
           </div>
         </section>
 
-        {/* RECRUITMENT */}
+        {/* RECRUITMENT - unchanged */}
         <section className="max-w-6xl mx-auto px-6 py-8">
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              {
-                icon: "🛡️",
-                role: "Tanks",
-                desc: "Reliable leaders capable of controlling chaos under pressure."
-              },
-              {
-                icon: "✨",
-                role: "Healers",
-                desc: "Focused support players with awareness and consistency."
-              },
-              {
-                icon: "⚔️",
-                role: "DPS",
-                desc: "High-performance players dedicated to optimization."
-              }
+              { icon: "🛡️", role: "Tanks", desc: "Reliable leaders capable of controlling chaos under pressure." },
+              { icon: "✨", role: "Healers", desc: "Focused support players with awareness and consistency." },
+              { icon: "⚔️", role: "DPS", desc: "High-performance players dedicated to optimization." }
             ].map((role) => (
-              <div
-                key={role.role}
-                className="bg-black/50 border border-red-900/40 rounded-3xl p-8 text-center backdrop-blur-sm"
-              >
+              <div key={role.role} className="bg-black/50 border border-red-900/40 rounded-3xl p-8 text-center backdrop-blur-sm">
                 <div className="text-5xl mb-4">{role.icon}</div>
-                <h3 className="text-3xl font-bold text-red-200 mb-3">
-                  {role.role}
-                </h3>
-                <p className="text-blue-100/80 text-lg leading-relaxed">
-                  {role.desc}
-                </p>
+                <h3 className="text-3xl font-bold text-red-200 mb-3">{role.role}</h3>
+                <p className="text-blue-100/80 text-lg leading-relaxed">{role.desc}</p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* RAID PROGRESSION */}
+        {/* RAID PROGRESSION - Reversed order + updated difficulties */}
         <section className="max-w-7xl mx-auto px-6 py-16">
           <h2 className="text-5xl font-black text-center text-blue-200 mb-12">
             Raid Progression
@@ -325,7 +306,7 @@ export default function GloryBoysGuildSite() {
 
           <div className="space-y-6">
             {activeExpansion.raids.map((raid) => {
-              const difficulties = getDifficulties(activeExpansion.expansion)
+              const difficulties = getDifficulties(activeExpansion.expansion, raid.name)
               return (
                 <div
                   key={raid.name}
@@ -334,16 +315,12 @@ export default function GloryBoysGuildSite() {
                   <div className="bg-gradient-to-r from-red-950/80 via-black to-blue-950/80 px-8 py-5 border-b border-blue-900/40">
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                       <div>
-                        <h3 className="text-3xl font-black text-blue-100">
-                          {raid.name}
-                        </h3>
+                        <h3 className="text-3xl font-black text-blue-100">{raid.name}</h3>
                         <div className="text-blue-200/70 mt-1">
                           {raid.bosses} / {raid.bosses} Bosses Defeated
                         </div>
                       </div>
-                      <div className="text-green-300 font-bold text-xl">
-                        100% Cleared
-                      </div>
+                      <div className="text-green-300 font-bold text-xl">100% Cleared</div>
                     </div>
                   </div>
 
