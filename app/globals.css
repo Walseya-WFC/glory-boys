@@ -147,14 +147,13 @@ a {
   position: absolute;
   inset: -200%;
   background-image: repeating-linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.35) 0px,
-    rgba(255, 255, 255, 0.35) 1px,
-    transparent 3px,
-    transparent 8px
+  to bottom,
+  rgba(255, 255, 255, 0.6) 0px,
+  rgba(255, 255, 255, 0.6) 1px,
+  rgba(255, 255, 255, 0.2) 2px,
+  transparent 6px
   );
 
-  transform: rotate(10deg);
   animation: rainFall 0.35s linear infinite;
   opacity: 0.5;
 }
