@@ -120,6 +120,10 @@ export default function GloryBoysGuildSite() {
       {/* DARK SHADE */}
       <div className="absolute inset-0 bg-black/25" />
 
+      <div className="fog-layer" />
+      <div className="ash-layer" />
+      <div className="lightning-layer" />
+
       <div className="relative z-10">
 
         {/* HERO */}
